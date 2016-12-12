@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1632AF371DC4A31C00DF20DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632AF361DC4A31C00DF20DD /* AppDelegate.swift */; };
+		1632AF3C1DC4A31C00DF20DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3A1DC4A31C00DF20DD /* Main.storyboard */; };
+		1632AF3E1DC4A31C00DF20DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3D1DC4A31C00DF20DD /* Assets.xcassets */; };
+		1632AF411DC4A31C00DF20DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3F1DC4A31C00DF20DD /* LaunchScreen.storyboard */; };
+		16E956481DEF3741003D8BDD /* LotteryIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956441DEF3741003D8BDD /* LotteryIndexViewController.swift */; };
+		16E956491DEF3741003D8BDD /* LotteryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956451DEF3741003D8BDD /* LotteryDetailsViewController.swift */; };
+		16E9564A1DEF3741003D8BDD /* LotteryPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956461DEF3741003D8BDD /* LotteryPDFViewController.swift */; };
+		16E9564B1DEF3741003D8BDD /* LotterySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956471DEF3741003D8BDD /* LotterySearchViewController.swift */; };
+		16E956501DEF37ED003D8BDD /* DiscussIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9564D1DEF37ED003D8BDD /* DiscussIndexViewController.swift */; };
+		16E956511DEF37ED003D8BDD /* DiscussDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9564E1DEF37ED003D8BDD /* DiscussDetailsViewController.swift */; };
+		16E956521DEF37ED003D8BDD /* DiscussAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9564F1DEF37ED003D8BDD /* DiscussAddViewController.swift */; };
+		16E9565D1DEF3839003D8BDD /* mMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956531DEF3839003D8BDD /* mMessageResponse.swift */; };
+		16E9565E1DEF3839003D8BDD /* mLotteryPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956541DEF3839003D8BDD /* mLotteryPeriod.swift */; };
+		16E9565F1DEF3839003D8BDD /* mLottery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956551DEF3839003D8BDD /* mLottery.swift */; };
+		16E956601DEF3839003D8BDD /* mLotteryPrizeNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956561DEF3839003D8BDD /* mLotteryPrizeNumber.swift */; };
+		16E956611DEF3839003D8BDD /* mUserLottery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956571DEF3839003D8BDD /* mUserLottery.swift */; };
+		16E956621DEF3839003D8BDD /* mUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956581DEF3839003D8BDD /* mUser.swift */; };
+		16E956631DEF3839003D8BDD /* mDiscuss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956591DEF3839003D8BDD /* mDiscuss.swift */; };
+		16E956641DEF3839003D8BDD /* mDiscussPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9565A1DEF3839003D8BDD /* mDiscussPeriod.swift */; };
+		16E956651DEF3839003D8BDD /* mDiscussReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9565B1DEF3839003D8BDD /* mDiscussReply.swift */; };
+		16E956661DEF3839003D8BDD /* mGlobalproperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9565C1DEF3839003D8BDD /* mGlobalproperty.swift */; };
+		16E9566C1DEF385B003D8BDD /* Ws_Discuss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956691DEF385B003D8BDD /* Ws_Discuss.swift */; };
+		16E9566D1DEF385B003D8BDD /* Ws_Lottery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9566A1DEF385B003D8BDD /* Ws_Lottery.swift */; };
+		16E9566E1DEF385B003D8BDD /* Ws_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9566B1DEF385B003D8BDD /* Ws_User.swift */; };
+		16E956721DEF38EB003D8BDD /* DiscussTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956701DEF38EB003D8BDD /* DiscussTableViewCell.swift */; };
+		16E956731DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956711DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift */; };
+		16FA36FA1DFC3CEB00F8E599 /* FunctionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36F91DFC3CEB00F8E599 /* FunctionsProvider.swift */; };
+		16FA36FC1DFC3DFB00F8E599 /* DrawLotteryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36FB1DFC3DFB00F8E599 /* DrawLotteryProvider.swift */; };
+		16FA36FE1DFC687500F8E599 /* PickerViewDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36FD1DFC687500F8E599 /* PickerViewDateProvider.swift */; };
+		16FCA2251DFC09EA0024381C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16FCA2241DFC09EA0024381C /* iAd.framework */; };
+		F001D05C1DDDF194000FFAE7 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F001D05B1DDDF194000FFAE7 /* DLRadioButton.m */; };
+		F001D05E1DDDF615000FFAE7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F001D05D1DDDF615000FFAE7 /* LoginViewController.swift */; };
+		F00F73461DDF146F009033C3 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F73451DDF146F009033C3 /* UserViewController.swift */; };
+		F00F73481DDF261E009033C3 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F73471DDF261E009033C3 /* RegistrationViewController.swift */; };
+		F00F734A1DDF4FA1009033C3 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F73491DDF4FA1009033C3 /* PersonalViewController.swift */; };
+		F00F734C1DDF5595009033C3 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00F734B1DDF5595009033C3 /* ChangePasswordViewController.swift */; };
+		F0B278C71DE332020029FE06 /* CustomUISwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B278C51DE332020029FE06 /* CustomUISwitchTableViewCell.swift */; };
+		F0B278C81DE332020029FE06 /* CustomUISwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B278C61DE332020029FE06 /* CustomUISwitchTableViewCell.xib */; };
+		F0E3C10C1DE057EF008863B6 /* DLRadioButton.h in Sources */ = {isa = PBXBuildFile; fileRef = F001D0591DDDF149000FFAE7 /* DLRadioButton.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1632AF331DC4A31C00DF20DD /* Lottery_iOS_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lottery_iOS_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1632AF361DC4A31C00DF20DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1632AF3B1DC4A31C00DF20DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1632AF3D1DC4A31C00DF20DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1632AF401DC4A31C00DF20DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1632AF421DC4A31C00DF20DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16E956441DEF3741003D8BDD /* LotteryIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryIndexViewController.swift; sourceTree = "<group>"; };
+		16E956451DEF3741003D8BDD /* LotteryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryDetailsViewController.swift; sourceTree = "<group>"; };
+		16E956461DEF3741003D8BDD /* LotteryPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryPDFViewController.swift; sourceTree = "<group>"; };
+		16E956471DEF3741003D8BDD /* LotterySearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotterySearchViewController.swift; sourceTree = "<group>"; };
+		16E9564D1DEF37ED003D8BDD /* DiscussIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussIndexViewController.swift; sourceTree = "<group>"; };
+		16E9564E1DEF37ED003D8BDD /* DiscussDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussDetailsViewController.swift; sourceTree = "<group>"; };
+		16E9564F1DEF37ED003D8BDD /* DiscussAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussAddViewController.swift; sourceTree = "<group>"; };
+		16E956531DEF3839003D8BDD /* mMessageResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mMessageResponse.swift; sourceTree = "<group>"; };
+		16E956541DEF3839003D8BDD /* mLotteryPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mLotteryPeriod.swift; sourceTree = "<group>"; };
+		16E956551DEF3839003D8BDD /* mLottery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mLottery.swift; sourceTree = "<group>"; };
+		16E956561DEF3839003D8BDD /* mLotteryPrizeNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mLotteryPrizeNumber.swift; sourceTree = "<group>"; };
+		16E956571DEF3839003D8BDD /* mUserLottery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mUserLottery.swift; sourceTree = "<group>"; };
+		16E956581DEF3839003D8BDD /* mUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mUser.swift; sourceTree = "<group>"; };
+		16E956591DEF3839003D8BDD /* mDiscuss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mDiscuss.swift; sourceTree = "<group>"; };
+		16E9565A1DEF3839003D8BDD /* mDiscussPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mDiscussPeriod.swift; sourceTree = "<group>"; };
+		16E9565B1DEF3839003D8BDD /* mDiscussReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mDiscussReply.swift; sourceTree = "<group>"; };
+		16E9565C1DEF3839003D8BDD /* mGlobalproperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mGlobalproperty.swift; sourceTree = "<group>"; };
+		16E956691DEF385B003D8BDD /* Ws_Discuss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ws_Discuss.swift; sourceTree = "<group>"; };
+		16E9566A1DEF385B003D8BDD /* Ws_Lottery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ws_Lottery.swift; sourceTree = "<group>"; };
+		16E9566B1DEF385B003D8BDD /* Ws_User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ws_User.swift; sourceTree = "<group>"; };
+		16E956701DEF38EB003D8BDD /* DiscussTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussTableViewCell.swift; sourceTree = "<group>"; };
+		16E956711DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussReplyTableViewCell.swift; sourceTree = "<group>"; };
+		16FA36F91DFC3CEB00F8E599 /* FunctionsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsProvider.swift; sourceTree = "<group>"; };
+		16FA36FB1DFC3DFB00F8E599 /* DrawLotteryProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawLotteryProvider.swift; sourceTree = "<group>"; };
+		16FA36FD1DFC687500F8E599 /* PickerViewDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewDateProvider.swift; sourceTree = "<group>"; };
+		16FCA2241DFC09EA0024381C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		F001D0591DDDF149000FFAE7 /* DLRadioButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
+		F001D05A1DDDF193000FFAE7 /* Lottery_iOS_Project-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lottery_iOS_Project-Bridging-Header.h"; sourceTree = "<group>"; };
+		F001D05B1DDDF194000FFAE7 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
+		F001D05D1DDDF615000FFAE7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F00F73451DDF146F009033C3 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		F00F73471DDF261E009033C3 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		F00F73491DDF4FA1009033C3 /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		F00F734B1DDF5595009033C3 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		F0B278C51DE332020029FE06 /* CustomUISwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUISwitchTableViewCell.swift; sourceTree = "<group>"; };
+		F0B278C61DE332020029FE06 /* CustomUISwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomUISwitchTableViewCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1632AF301DC4A31B00DF20DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16FCA2251DFC09EA0024381C /* iAd.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1632AF2A1DC4A31B00DF20DD = {
+			isa = PBXGroup;
+			children = (
+				1632AF351DC4A31C00DF20DD /* Lottery_iOS_Project */,
+				1632AF341DC4A31C00DF20DD /* Products */,
+				16FCA2231DFC09EA0024381C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1632AF341DC4A31C00DF20DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1632AF331DC4A31C00DF20DD /* Lottery_iOS_Project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1632AF351DC4A31C00DF20DD /* Lottery_iOS_Project */ = {
+			isa = PBXGroup;
+			children = (
+				F001D0581DDDF10D000FFAE7 /* DLRadioButton */,
+				16B08CD11DC5CFB600254C19 /* Web Service */,
+				16B08CD01DC5CFB200254C19 /* Model */,
+				1632AF361DC4A31C00DF20DD /* AppDelegate.swift */,
+				1632AF3A1DC4A31C00DF20DD /* Main.storyboard */,
+				1632AF3D1DC4A31C00DF20DD /* Assets.xcassets */,
+				1632AF3F1DC4A31C00DF20DD /* LaunchScreen.storyboard */,
+				1632AF421DC4A31C00DF20DD /* Info.plist */,
+				1632AF8E1DC50F5000DF20DD /* ViewController */,
+			);
+			path = Lottery_iOS_Project;
+			sourceTree = "<group>";
+		};
+		1632AF8E1DC50F5000DF20DD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				16FA36F81DFC3CCE00F8E599 /* Functions */,
+				16E9566F1DEF38D6003D8BDD /* ClassTableCell */,
+				1632AF911DC50F7300DF20DD /* More */,
+				1632AF901DC50F6900DF20DD /* Discuss */,
+				1632AF8F1DC50F6400DF20DD /* Lottery */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		1632AF8F1DC50F6400DF20DD /* Lottery */ = {
+			isa = PBXGroup;
+			children = (
+				16E956441DEF3741003D8BDD /* LotteryIndexViewController.swift */,
+				16E956451DEF3741003D8BDD /* LotteryDetailsViewController.swift */,
+				16E956461DEF3741003D8BDD /* LotteryPDFViewController.swift */,
+				16E956471DEF3741003D8BDD /* LotterySearchViewController.swift */,
+			);
+			name = Lottery;
+			sourceTree = "<group>";
+		};
+		1632AF901DC50F6900DF20DD /* Discuss */ = {
+			isa = PBXGroup;
+			children = (
+				16E9564D1DEF37ED003D8BDD /* DiscussIndexViewController.swift */,
+				16E9564E1DEF37ED003D8BDD /* DiscussDetailsViewController.swift */,
+				16E9564F1DEF37ED003D8BDD /* DiscussAddViewController.swift */,
+			);
+			name = Discuss;
+			sourceTree = "<group>";
+		};
+		1632AF911DC50F7300DF20DD /* More */ = {
+			isa = PBXGroup;
+			children = (
+				F001D05D1DDDF615000FFAE7 /* LoginViewController.swift */,
+				F00F73451DDF146F009033C3 /* UserViewController.swift */,
+				F00F73471DDF261E009033C3 /* RegistrationViewController.swift */,
+				F00F73491DDF4FA1009033C3 /* PersonalViewController.swift */,
+				F00F734B1DDF5595009033C3 /* ChangePasswordViewController.swift */,
+				F0B278C51DE332020029FE06 /* CustomUISwitchTableViewCell.swift */,
+				F0B278C61DE332020029FE06 /* CustomUISwitchTableViewCell.xib */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
+		16B08CD01DC5CFB200254C19 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				16E956531DEF3839003D8BDD /* mMessageResponse.swift */,
+				16E956541DEF3839003D8BDD /* mLotteryPeriod.swift */,
+				16E956551DEF3839003D8BDD /* mLottery.swift */,
+				16E956561DEF3839003D8BDD /* mLotteryPrizeNumber.swift */,
+				16E956571DEF3839003D8BDD /* mUserLottery.swift */,
+				16E956581DEF3839003D8BDD /* mUser.swift */,
+				16E956591DEF3839003D8BDD /* mDiscuss.swift */,
+				16E9565A1DEF3839003D8BDD /* mDiscussPeriod.swift */,
+				16E9565B1DEF3839003D8BDD /* mDiscussReply.swift */,
+				16E9565C1DEF3839003D8BDD /* mGlobalproperty.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		16B08CD11DC5CFB600254C19 /* Web Service */ = {
+			isa = PBXGroup;
+			children = (
+				16E956691DEF385B003D8BDD /* Ws_Discuss.swift */,
+				16E9566A1DEF385B003D8BDD /* Ws_Lottery.swift */,
+				16E9566B1DEF385B003D8BDD /* Ws_User.swift */,
+			);
+			name = "Web Service";
+			sourceTree = "<group>";
+		};
+		16E9566F1DEF38D6003D8BDD /* ClassTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				16E956701DEF38EB003D8BDD /* DiscussTableViewCell.swift */,
+				16E956711DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift */,
+			);
+			name = ClassTableCell;
+			sourceTree = "<group>";
+		};
+		16FA36F81DFC3CCE00F8E599 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				16FA36FD1DFC687500F8E599 /* PickerViewDateProvider.swift */,
+				16FA36F91DFC3CEB00F8E599 /* FunctionsProvider.swift */,
+				16FA36FB1DFC3DFB00F8E599 /* DrawLotteryProvider.swift */,
+			);
+			name = Functions;
+			sourceTree = "<group>";
+		};
+		16FCA2231DFC09EA0024381C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16FCA2241DFC09EA0024381C /* iAd.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F001D0581DDDF10D000FFAE7 /* DLRadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				F001D0591DDDF149000FFAE7 /* DLRadioButton.h */,
+				F001D05B1DDDF194000FFAE7 /* DLRadioButton.m */,
+				F001D05A1DDDF193000FFAE7 /* Lottery_iOS_Project-Bridging-Header.h */,
+			);
+			name = DLRadioButton;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1632AF321DC4A31B00DF20DD /* Lottery_iOS_Project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1632AF451DC4A31C00DF20DD /* Build configuration list for PBXNativeTarget "Lottery_iOS_Project" */;
+			buildPhases = (
+				1632AF2F1DC4A31B00DF20DD /* Sources */,
+				1632AF301DC4A31B00DF20DD /* Frameworks */,
+				1632AF311DC4A31B00DF20DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lottery_iOS_Project;
+			productName = Lottery_iOS_Project;
+			productReference = 1632AF331DC4A31C00DF20DD /* Lottery_iOS_Project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1632AF2B1DC4A31B00DF20DD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = ToyStory;
+				TargetAttributes = {
+					1632AF321DC4A31B00DF20DD = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 6VCMU63L9B;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1632AF2E1DC4A31B00DF20DD /* Build configuration list for PBXProject "Lottery_iOS_Project" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1632AF2A1DC4A31B00DF20DD;
+			productRefGroup = 1632AF341DC4A31C00DF20DD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1632AF321DC4A31B00DF20DD /* Lottery_iOS_Project */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1632AF311DC4A31B00DF20DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1632AF411DC4A31C00DF20DD /* LaunchScreen.storyboard in Resources */,
+				1632AF3E1DC4A31C00DF20DD /* Assets.xcassets in Resources */,
+				F0B278C81DE332020029FE06 /* CustomUISwitchTableViewCell.xib in Resources */,
+				1632AF3C1DC4A31C00DF20DD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1632AF2F1DC4A31B00DF20DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0E3C10C1DE057EF008863B6 /* DLRadioButton.h in Sources */,
+				1632AF371DC4A31C00DF20DD /* AppDelegate.swift in Sources */,
+				16E956731DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift in Sources */,
+				16FA36FA1DFC3CEB00F8E599 /* FunctionsProvider.swift in Sources */,
+				16E9566E1DEF385B003D8BDD /* Ws_User.swift in Sources */,
+				F00F73461DDF146F009033C3 /* UserViewController.swift in Sources */,
+				16E956511DEF37ED003D8BDD /* DiscussDetailsViewController.swift in Sources */,
+				F001D05E1DDDF615000FFAE7 /* LoginViewController.swift in Sources */,
+				16E956641DEF3839003D8BDD /* mDiscussPeriod.swift in Sources */,
+				16E956481DEF3741003D8BDD /* LotteryIndexViewController.swift in Sources */,
+				16E9566D1DEF385B003D8BDD /* Ws_Lottery.swift in Sources */,
+				16E956601DEF3839003D8BDD /* mLotteryPrizeNumber.swift in Sources */,
+				16E956631DEF3839003D8BDD /* mDiscuss.swift in Sources */,
+				16E9565F1DEF3839003D8BDD /* mLottery.swift in Sources */,
+				F0B278C71DE332020029FE06 /* CustomUISwitchTableViewCell.swift in Sources */,
+				16E9564A1DEF3741003D8BDD /* LotteryPDFViewController.swift in Sources */,
+				16E9566C1DEF385B003D8BDD /* Ws_Discuss.swift in Sources */,
+				16FA36FC1DFC3DFB00F8E599 /* DrawLotteryProvider.swift in Sources */,
+				16E9565E1DEF3839003D8BDD /* mLotteryPeriod.swift in Sources */,
+				16E956611DEF3839003D8BDD /* mUserLottery.swift in Sources */,
+				16E956491DEF3741003D8BDD /* LotteryDetailsViewController.swift in Sources */,
+				16E9565D1DEF3839003D8BDD /* mMessageResponse.swift in Sources */,
+				16E956661DEF3839003D8BDD /* mGlobalproperty.swift in Sources */,
+				16FA36FE1DFC687500F8E599 /* PickerViewDateProvider.swift in Sources */,
+				F00F734C1DDF5595009033C3 /* ChangePasswordViewController.swift in Sources */,
+				F00F73481DDF261E009033C3 /* RegistrationViewController.swift in Sources */,
+				16E9564B1DEF3741003D8BDD /* LotterySearchViewController.swift in Sources */,
+				F00F734A1DDF4FA1009033C3 /* PersonalViewController.swift in Sources */,
+				F001D05C1DDDF194000FFAE7 /* DLRadioButton.m in Sources */,
+				16E956621DEF3839003D8BDD /* mUser.swift in Sources */,
+				16E956721DEF38EB003D8BDD /* DiscussTableViewCell.swift in Sources */,
+				16E956651DEF3839003D8BDD /* mDiscussReply.swift in Sources */,
+				16E956501DEF37ED003D8BDD /* DiscussIndexViewController.swift in Sources */,
+				16E956521DEF37ED003D8BDD /* DiscussAddViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1632AF3A1DC4A31C00DF20DD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1632AF3B1DC4A31C00DF20DD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1632AF3F1DC4A31C00DF20DD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1632AF401DC4A31C00DF20DD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1632AF431DC4A31C00DF20DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1632AF441DC4A31C00DF20DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1632AF461DC4A31C00DF20DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6VCMU63L9B;
+				INFOPLIST_FILE = Lottery_iOS_Project/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Supanat.Lottery-iOS-Project-SourseTree";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lottery_iOS_Project/Lottery_iOS_Project-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Debug;
+		};
+		1632AF471DC4A31C00DF20DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6VCMU63L9B;
+				INFOPLIST_FILE = Lottery_iOS_Project/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Supanat.Lottery-iOS-Project-SourseTree";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lottery_iOS_Project/Lottery_iOS_Project-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1632AF2E1DC4A31B00DF20DD /* Build configuration list for PBXProject "Lottery_iOS_Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1632AF431DC4A31C00DF20DD /* Debug */,
+				1632AF441DC4A31C00DF20DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1632AF451DC4A31C00DF20DD /* Build configuration list for PBXNativeTarget "Lottery_iOS_Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1632AF461DC4A31C00DF20DD /* Debug */,
+				1632AF471DC4A31C00DF20DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1632AF2B1DC4A31B00DF20DD /* Project object */;
+}
