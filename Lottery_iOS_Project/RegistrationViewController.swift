@@ -123,7 +123,7 @@ class RegistrationViewController: UIViewController {
             let birthday:String = birthdayField.text!
             let gender:String = userGender
             Ws_User.Register(email, password: password, name: name, birthday: birthday, gender: gender, completion: {(responseData, errorMessage) ->Void in
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("userView") as! UserViewController
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
                 let globalProperty:mGlobalproperty = responseData
                 if(globalProperty.resultResponse.result == true){
                     vc.userID = globalProperty.userProfile.user_id
@@ -136,10 +136,17 @@ class RegistrationViewController: UIViewController {
                     vc.acceptLotteryNotification = globalProperty.userProfile.isAccepted_lottery_notification
                     
                     dispatch_async(dispatch_get_main_queue(), {
-                        let alert = UIAlertController(title: "สมัครล้มเหลว", message: "ลองใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
+//                        let alert = UIAlertController(title: "สมัครล้มเหลว", message: "ลองใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
+//                        alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
+//                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
                     })
+                }
+                else{
+                    let alert = UIAlertController(title: "สมัครล้มเหลว", message: "ลองใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             })
         }
