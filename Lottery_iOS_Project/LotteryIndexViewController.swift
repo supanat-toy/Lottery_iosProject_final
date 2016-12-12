@@ -110,11 +110,11 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         if (uiPickerView_dateLottery.hidden == true){
             uiPickerView_dateLottery.hidden = false
             
-            scrollView_Lottery1.contentInset = UIEdgeInsetsMake(165, 0.0, 0.0, 0.0)
-            scrollView_Lottery1.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight+175)
+            //scrollView_Lottery1.contentInset = UIEdgeInsetsMake(165, 0.0, 0.0, 0.0)
+            scrollView_Lottery1.frame = CGRect(x: 0, y: 250, width: WIDTH, height: scrollHeight+175)
         }
         else{
-            scrollView_Lottery1.contentInset = UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)
+            //scrollView_Lottery1.contentInset = UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)
             scrollView_Lottery1.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight)
             
             current_datePicker = String(selected_dayPicker) + "/" + String(selected_monthPicker) + "/" + String(selected_yearPickker)

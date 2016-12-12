@@ -90,6 +90,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             peanut.switchVal = notificationSample[index].choice
             notiArray.append(peanut)
         }
+        
+        self.navigationController?.popViewControllerAnimated(false)
     }
 
     override func didReceiveMemoryWarning() {

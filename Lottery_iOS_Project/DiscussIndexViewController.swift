@@ -18,13 +18,14 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
     var selected_dayPicker: Int = 0
     var selected_monthPicker: Int = 0
     var selected_yearPickker: Int = 0
-    
+    var isChangePickerDate: Bool = false
     
     var bannerAdView: ADBannerView = ADBannerView()
 
     var refreshControl: UIRefreshControl = UIRefreshControl()
     var datePicker_lotteryDate = UIDatePicker()
     let WIDTH = UIScreen.mainScreen().bounds.width
+    let HEIGHT = UIScreen.mainScreen().bounds.height
     var isAddNewDiscuss: Bool = false
     
     @IBOutlet weak var navigateBar_bottom: UINavigationBar!
@@ -93,6 +94,12 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
                 self.navigateBar_bottom.topItem?.title = self.wsDiscussPeriod.discuss_period_date_thaiName
                 self.tableView_.reloadData()
                 self.refreshControl.endRefreshing()
+                if (self.isChangePickerDate){
+                    var scrollHeight = self.tableView_.contentSize.height
+                    self.tableView_.contentSize = CGSize(
+                        width: self.WIDTH,
+                        height: scrollHeight+207)
+                }
             })
         }
     }
@@ -103,62 +110,29 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
             uiPickerView_dateDiscuss.hidden = false
             
             //tableView_.contentInset = UIEdgeInsetsMake(300, 0.0, 0.0, 0.0)
-            tableView_.frame = CGRect(x: 0, y: 260, width: WIDTH, height: scrollHeight+175)
+            tableView_.frame = CGRect(x: 0, y: 250, width: WIDTH, height: HEIGHT)
             
-            var contentInset:UIEdgeInsets = tableView_.contentInset
-            contentInset.top = 200
-            tableView_.contentInset = contentInset
+//            var contentInset:UIEdgeInsets = tableView_.contentInset
+//            contentInset.top = 200
+//            tableView_.contentInset = contentInset
             
         }
         else{
 //            tableView_.contentInset = UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)
-            tableView_.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight)
+            tableView_.frame = CGRect(x: 0, y: 107, width: WIDTH, height: HEIGHT)
             
-            let contentInset:UIEdgeInsets = UIEdgeInsetsZero
-            tableView_.contentInset = contentInset
-            
-            current_datePicker = String(selected_dayPicker) + "/" + String(selected_monthPicker) + "/" + String(selected_yearPickker)
-            refresh_wsGetDiscuss()
-            
-            uiPickerView_dateDiscuss.hidden = true
-        }
-        
-//        var scrollHeight = tableView_.bounds.height
-//        if (datePicker_lotteryDate.hidden){
-//            datePicker_lotteryDate = UIDatePicker()
-//            datePicker_lotteryDate.hidden = false
-//            datePicker_lotteryDate.datePickerMode = UIDatePickerMode.Date
-//            
-//            var pickerSize : CGSize = datePicker_lotteryDate.sizeThatFits(CGSizeZero)
-//            datePicker_lotteryDate.frame = CGRectMake(0, 108, WIDTH, 180)
-//            
-//            datePicker_lotteryDate.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-//            self.view.addSubview(datePicker_lotteryDate)
-//            
-//            var contentInset:UIEdgeInsets = tableView_.contentInset
-//            contentInset.top = 200
-//            tableView_.contentInset = contentInset
-//        }
-//        else{
-//            datePicker_lotteryDate.resignFirstResponder()
-//            
 //            let contentInset:UIEdgeInsets = UIEdgeInsetsZero
 //            tableView_.contentInset = contentInset
-//            
-//            let dateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = "dd/mm/yyyy"
-//            
-//            let strDate = dateFormatter.stringFromDate(datePicker_lotteryDate.date)
-//            
-//            current_datePicker = strDate
-//            refresh_wsGetDiscuss()
-//            
-//            var lottery: LotteryIndexViewController = LotteryIndexViewController()
-//            lottery.current_datePicker = current_datePicker
-//            
-//            datePicker_lotteryDate.hidden = true
-//            
-//        }
+            
+            current_datePicker = String(selected_dayPicker) + "/" + String(selected_monthPicker) + "/" + String(selected_yearPickker)
+            
+            
+            isChangePickerDate = true
+            uiPickerView_dateDiscuss.hidden = true
+            refresh_wsGetDiscuss()
+            
+            
+        }
         
     }
     

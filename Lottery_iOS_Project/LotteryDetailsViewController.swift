@@ -26,6 +26,8 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     let HEIGHT = UIScreen.mainScreen().bounds.height
     var datePicker_lotteryDate = UIDatePicker()
     var view_prize_4th_height:CGFloat!
+    var isChangePickerDate: Bool = false
+    
     //var scrollView_Lottery: UIScrollView!
     var current_datePicker: String = ""
     
@@ -85,22 +87,29 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     @IBAction func btn_datePicker_lottery_date(sender: AnyObject) {
-        var scrollHeight = scrollView_Lottery1.bounds.height
+        //var scrollHeight = scrollView_Lottery1.contentSize.height
+        
         if (uiPickerView_dateLottery.hidden == true){
             uiPickerView_dateLottery.hidden = false
             
-            scrollView_Lottery1.contentInset = UIEdgeInsetsMake(150, 0.0, 0.0, 0.0)
-            scrollView_Lottery1.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight+175)
+            //scrollView_Lottery1.contentInset = UIEdgeInsetsMake(150, 0.0, 0.0, 0.0)
+            scrollView_Lottery1.frame = CGRect(x: 0, y: 250, width: WIDTH, height: HEIGHT)
         }
         else{
-            scrollView_Lottery1.contentInset = UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)
-            scrollView_Lottery1.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight)
+            //scrollView_Lottery1.contentInset = UIEdgeInsetsMake(0, 0.0, 0.0, 0.0)
+            scrollView_Lottery1.frame = CGRect(x: 0, y: 110, width: WIDTH, height: HEIGHT)
+        
             
             current_datePicker = String(selected_dayPicker) + "/" + String(selected_monthPicker) + "/" + String(selected_yearPickker)
+            
+            isChangePickerDate = true
+            uiPickerView_dateLottery.hidden = true
             refresh_wsGetLottery()
             
-            uiPickerView_dateLottery.hidden = true
+            
         }
+        
+       
         
     }
     @IBAction func btn_push_pdf_controller(sender: AnyObject) {
@@ -145,9 +154,16 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         
             var height_all_view:CGFloat = view_prize_1st.bounds.height + view_prize_2rear.bounds.height + view_prize_3front_rear.bounds.height + view_prize_2nd.bounds.height + view_prize_3rd.bounds.height + view_prize_4th.bounds.height + view_prize_5th.bounds.height
         
+        if (isChangePickerDate){
             scrollView_Lottery1.contentSize = CGSize(
-            width: self.WIDTH,
-            height: height_all_view+245)
+                width: self.WIDTH,
+                height: height_all_view+250)
+        }else{
+            scrollView_Lottery1.contentSize = CGSize(
+                width: self.WIDTH,
+                height: height_all_view+90)
+        }
+        
         
         
     }

@@ -12,6 +12,14 @@ class ChangePasswordViewController: UIViewController {
 
     var currentPassword:String!
     
+    var name:String!
+    var birthday:String!
+    var gender: String!
+    var ID:Int!
+    var email:String!
+    var checkingNotification:Bool!
+    var lotteryNotification:Bool!
+    
     @IBOutlet weak var currentPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmNewPasswordField: UITextField!
@@ -21,6 +29,7 @@ class ChangePasswordViewController: UIViewController {
         currentPasswordField.text = currentPassword
         self.hideKeyboardWhenTappedAround()
 
+        //self.navigationController?.popViewControllerAnimated(false)
         // Do any additional setup after loading the view.
     }
 
@@ -29,15 +38,52 @@ class ChangePasswordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func updatePasswordBtn(sender: UIButton) {
+        let changePassword = newPasswordField.text
+        let confirmPassword = confirmNewPasswordField.text
+        let oldPassword = currentPasswordField.text
+        
+        if(changePassword == confirmPassword && changePassword != oldPassword && changePassword != ""){
+        
+            Ws_User.UpdateUserProfile(ID, password: changePassword!, name: name, birthday: birthday, gender: gender, completion: {(responseData, errorMessage) -> Void in
+                
+                let vs = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
+                
+                vs.userID = responseData.user_id
+                vs.userEmail = responseData.email
+                vs.userPassword = responseData.password
+                vs.userName = responseData.name
+                vs.userBirthday = responseData.birthday
+                vs.userGender = responseData.gender
+                vs.acceptCheckingNotification = responseData.isAccepted_checking_notification
+                vs.acceptLotteryNotification = responseData.isAccepted_lottery_notification
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    self.navigationController?.pushViewController(vs, animated: true)
+                })
+            })
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+//        
+//        Ws_User.UpdateUserProfile(email, password: password, name: changeUsername!, birthday: changeBirthday!, gender: changeGender, completion: {(responseData, errorMessage) -> Void in
+//            
+//            let vs = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
+//            
+//            vs.userID = responseData.user_id
+//            vs.userEmail = responseData.email
+//            vs.userPassword = responseData.password
+//            vs.userName = responseData.name
+//            vs.userBirthday = responseData.birthday
+//            vs.userGender = responseData.gender
+//            vs.acceptCheckingNotification = responseData.isAccepted_checking_notification
+//            vs.acceptLotteryNotification = responseData.isAccepted_lottery_notification
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//                self.navigationController?.pushViewController(vs, animated: true)
+//            })
+//        })
+        }
     }
-    */
-
 }

@@ -22,20 +22,28 @@ extension UIViewController {
 }
 
 class RegistrationViewController: UIViewController {
-
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
     
+    @IBOutlet weak var theScrollView: UIScrollView!
+    
     var userGender:String = ""
+    var datePickerRegistration:UIDatePicker = UIDatePicker()
+    
+    let WIDTH = UIScreen.mainScreen().bounds.width
+    let HEIGHT = UIScreen.mainScreen().bounds.height
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         birthdayField.enabled = false
+        datePickerRegistration.hidden = true
+        
         // Do any additional setup after loading the view.
     }
 
@@ -53,6 +61,28 @@ class RegistrationViewController: UIViewController {
 
     @IBAction func getBirthday(sender: AnyObject) {
         print("select birthday button")
+        let scrollHeight = theScrollView.bounds.height
+        
+        if(datePickerRegistration.hidden){
+            datePickerRegistration = UIDatePicker()
+            datePickerRegistration.hidden = false
+            datePickerRegistration.datePickerMode = UIDatePickerMode.Date
+            datePickerRegistration.addTarget(self, action: Selector("birthdayChange:"), forControlEvents: UIControlEvents.ValueChanged)
+            datePickerRegistration.frame = CGRectMake(0.0, 108.0, WIDTH, 180.0)
+            datePickerRegistration.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+            self.view.addSubview(datePickerRegistration)
+            theScrollView.contentInset = UIEdgeInsetsMake(300.0, 0.0, 0.0, 0.0)
+            theScrollView.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight + 175)
+        }
+        else{
+            datePickerRegistration.resignFirstResponder()
+            theScrollView.contentInset = UIEdgeInsetsMake(63, 0, 0, 0)
+            theScrollView.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            birthdayField.text = dateFormatter.stringFromDate(datePickerRegistration.date)
+            datePickerRegistration.hidden = true
+        }
         
     }
     @IBAction func registerBtn(sender: UIButton) {

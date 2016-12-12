@@ -96,7 +96,7 @@ class Ws_User {
     }
     
     // UpdateUserProfile
-    static func UpdateUserProfile(user_id: Int,name: String,birthday: String,gender: String,
+    static func UpdateUserProfile(user_id: Int,password: String, name: String,birthday: String,gender: String,
                          completion:(responseData:mUser,errorMessage:NSError?)->Void)
     {
         var userProfile:mUser!
