@@ -26,6 +26,8 @@ class PersonalViewController: UIViewController {
     @IBOutlet weak var maleBtn: DLRadioButton!
     @IBOutlet weak var femaleBtn: DLRadioButton!
     
+    var datePicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -48,6 +50,42 @@ class PersonalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func editBirthday(sender: UITextField) {
+        datePicker = UIDatePicker()
+        datePicker.datePickerMode = .Date
+        datePicker.calendar = NSCalendar(calendarIdentifier: "buddhist")
+        datePicker.locale = NSLocale(localeIdentifier: "th")
+        
+        sender.inputView = datePicker
+        let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
+        toolbar.barStyle = UIBarStyle.Default
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(cancelTapped))
+        let emptySpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(doneTapped))
+        
+        toolbar.items = [cancelButton, emptySpace, doneButton]
+        sender.inputAccessoryView = toolbar
+        
+    }
+    
+    func cancelTapped(sender: UIBarButtonItem!){
+        
+        birthdayField.resignFirstResponder()
+    }
+    
+    func doneTapped(sender: UIBarButtonItem!){
+        
+        let dateFormatter = NSDateFormatter()
+        //dateFormatter.dateStyle = .MediumStyle
+        //dateFormatter.timeStyle = .NoStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "th")
+        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
+        
+        birthdayField.text = dateFormatter.stringFromDate(datePicker.date)
+        birthdayField.resignFirstResponder()
+    }
+
     @IBAction func maleBtn(sender: DLRadioButton) {
         gender = "male"
     }
@@ -79,57 +117,5 @@ class PersonalViewController: UIViewController {
                 self.navigationController?.pushViewController(vs, animated: true)
             })
         })
-        
-        
-        
-        //let globalProperty: mGlobalproperty = responseData
-        
-        //            if(globalProperty.resultResponse.result == true){
-        //                vs.userID = responseData.
-        //            }
-        
-        
-        
-//        let email:String = emailField.text!
-//        let password:String = passwordField.text!
-//        
-//        if(email != "" && password != "" && email.containsString("@")){
-//            Ws_User.GetGlobalProperty(email, password: password, completion: { (responseData, errorMessage) -> Void in
-//                
-//                //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("userView") as! UserViewController
-//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
-//                let globalProperty: mGlobalproperty = responseData
-//                
-//                if(globalProperty.resultResponse.result == true){
-//                    vc.userID = globalProperty.userProfile.user_id
-//                    vc.userEmail = globalProperty.userProfile.email
-//                    vc.userPassword = globalProperty.userProfile.password
-//                    vc.userName = globalProperty.userProfile.name
-//                    vc.userBirthday = globalProperty.userProfile.birthday
-//                    vc.userGender = globalProperty.userProfile.gender
-//                    vc.acceptCheckingNotification = globalProperty.userProfile.isAccepted_checking_notification
-//                    vc.acceptLotteryNotification = globalProperty.userProfile.isAccepted_lottery_notification
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                        
-//                        //self.presentViewController(vc, animated: true, completion: nil)
-//                        self.navigationController?.pushViewController(vc, animated: true)
-//                    })
-//                }
-//                else{
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                        
-//                        let alert = UIAlertController(title: "อีเมลหรือรหัสผ่านไม่ถูกต้อง", message: "กรุณาใส่ใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
-//                        alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
-//                        self.presentViewController(alert, animated: true, completion: nil)
-//                    })
-//                }
-//            })
-//        }
-//        else{
-//            let alert = UIAlertController(title: "กรุณาใส่อีเมลและรหัสผ่าน", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-//            alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
-//            self.presentViewController(alert, animated: true, completion: nil)
-//        }
     }
 }
