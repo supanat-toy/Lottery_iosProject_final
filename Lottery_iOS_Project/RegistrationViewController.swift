@@ -32,7 +32,7 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var theScrollView: UIScrollView!
     
     var userGender:String = ""
-    var datePickerRegistration:UIDatePicker = UIDatePicker()
+    var datePickerRegistration:UIDatePicker!
     
     let WIDTH = UIScreen.mainScreen().bounds.width
     let HEIGHT = UIScreen.mainScreen().bounds.height
@@ -41,15 +41,10 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        birthdayField.enabled = false
-        datePickerRegistration.hidden = true
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func maleRadioBtn(sender: DLRadioButton) {
@@ -59,32 +54,44 @@ class RegistrationViewController: UIViewController {
         userGender = "female"
     }
 
-    @IBAction func getBirthday(sender: AnyObject) {
-        print("select birthday button")
-        let scrollHeight = theScrollView.bounds.height
+    @IBAction func getBirthday(sender: UITextField) {
         
-        if(datePickerRegistration.hidden){
-            datePickerRegistration = UIDatePicker()
-            datePickerRegistration.hidden = false
-            datePickerRegistration.datePickerMode = UIDatePickerMode.Date
-            datePickerRegistration.addTarget(self, action: Selector("birthdayChange:"), forControlEvents: UIControlEvents.ValueChanged)
-            datePickerRegistration.frame = CGRectMake(0.0, 108.0, WIDTH, 180.0)
-            datePickerRegistration.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-            self.view.addSubview(datePickerRegistration)
-            theScrollView.contentInset = UIEdgeInsetsMake(300.0, 0.0, 0.0, 0.0)
-            theScrollView.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight + 175)
-        }
-        else{
-            datePickerRegistration.resignFirstResponder()
-            theScrollView.contentInset = UIEdgeInsetsMake(63, 0, 0, 0)
-            theScrollView.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight)
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-            birthdayField.text = dateFormatter.stringFromDate(datePickerRegistration.date)
-            datePickerRegistration.hidden = true
-        }
+        datePickerRegistration = UIDatePicker()
+        datePickerRegistration.datePickerMode = .Date
+        datePickerRegistration.calendar = NSCalendar(calendarIdentifier: "buddhist")
+        datePickerRegistration.locale = NSLocale(localeIdentifier: "th")
+        
+        sender.inputView = datePickerRegistration
+        
+        let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
+        toolbar.barStyle = UIBarStyle.Default
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(cancelTapped))
+        let emptySpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(doneTapped))
+        
+        toolbar.items = [cancelButton, emptySpace, doneButton]
+        sender.inputAccessoryView = toolbar
         
     }
+
+    func cancelTapped(sender: UIBarButtonItem!){
+        
+        birthdayField.resignFirstResponder()
+    }
+    
+    func doneTapped(sender: UIBarButtonItem!){
+        
+        let dateFormatter = NSDateFormatter()
+        //dateFormatter.dateStyle = .MediumStyle
+        //dateFormatter.timeStyle = .NoStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "th")
+        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
+        
+        birthdayField.text = dateFormatter.stringFromDate(datePickerRegistration.date)
+        birthdayField.resignFirstResponder()
+    }
+    
     @IBAction func registerBtn(sender: UIButton) {
         if(emailField.text == "" || passwordField.text == ""){
             print("peanut")
@@ -123,7 +130,7 @@ class RegistrationViewController: UIViewController {
             let birthday:String = birthdayField.text!
             let gender:String = userGender
             Ws_User.Register(email, password: password, name: name, birthday: birthday, gender: gender, completion: {(responseData, errorMessage) ->Void in
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("userView") as! UserViewController
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
                 let globalProperty:mGlobalproperty = responseData
                 if(globalProperty.resultResponse.result == true){
                     vc.userID = globalProperty.userProfile.user_id
@@ -136,10 +143,17 @@ class RegistrationViewController: UIViewController {
                     vc.acceptLotteryNotification = globalProperty.userProfile.isAccepted_lottery_notification
                     
                     dispatch_async(dispatch_get_main_queue(), {
-                        let alert = UIAlertController(title: "สมัครล้มเหลว", message: "ลองใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
+//                        let alert = UIAlertController(title: "สมัครล้มเหลว", message: "ลองใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
+//                        alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
+//                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
                     })
+                }
+                else{
+                    let alert = UIAlertController(title: "สมัครล้มเหลว", message: "ลองใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             })
         }
