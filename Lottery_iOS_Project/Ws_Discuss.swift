@@ -49,7 +49,9 @@ class Ws_Discuss {
         var period_lottery_date = funcProvider.GetDateMinus543(period_lottery_date)
         
         var messageResponse:mMessageResponse!
-        let url = NSURL(string: "http://tskyonline.com:83/WS_Discuss/AddNewDiscuss?user_id=" + String(user_id) + "&period_lottery_date=" + period_lottery_date + "&numbers=" + numbers + "&message=" + message)
+        var escapedMessage = message.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        let url = NSURL(string: "http://tskyonline.com:83/WS_Discuss/AddNewDiscuss?user_id=\(String(user_id))&period_lottery_date=\(period_lottery_date)&numbers=\(numbers)&message=\(escapedMessage)")
+        
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             do {
@@ -145,7 +147,9 @@ class Ws_Discuss {
     {
        // var userLottery = [mDiscussReply]()
         var messageResponse:mMessageResponse!
-        let url = NSURL(string: "http://tskyonline.com:83/WS_Discuss/AddCommentDiscuss?user_id=" + String(user_id) + "&discuss_id=" + String(discuss_id) + "&message=" + message)
+        var escapedMessage = message.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        let url = NSURL(string: "http://tskyonline.com:83/WS_Discuss/AddCommentDiscuss?user_id=" + String(user_id) + "&discuss_id=" + String(discuss_id) + "&message=" + escapedMessage)
+        
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             do {

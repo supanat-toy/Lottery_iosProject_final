@@ -280,12 +280,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lottery_iOS_Project/Ws_Discuss.swift"
-            timestampString = "503137015.402899"
+            timestampString = "503252452.877661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "AddCommentDiscuss(user_id:discuss_id:message:completion:)"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "AddCommentDiscuss(_:discuss_id:message:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -365,7 +365,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "204"
             endingLineNumber = "204"
-            landmarkName = "btn_pressLikeDiscuss(_:)"
+            landmarkName = "btn_pressLikeDiscuss(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -381,7 +381,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "211"
             endingLineNumber = "211"
-            landmarkName = "btn_pressLikeDiscuss(_:)"
+            landmarkName = "btn_pressLikeDiscuss(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -397,7 +397,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "225"
             endingLineNumber = "225"
-            landmarkName = "btn_pressLikeDiscuss(_:)"
+            landmarkName = "btn_pressLikeDiscuss(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1086,6 +1086,22 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "refresh_wsGetDiscuss()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lottery_iOS_Project/Ws_Discuss.swift"
+            timestampString = "503252227.715725"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "AddNewDiscuss(_:period_lottery_date:numbers:message:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
