@@ -125,9 +125,9 @@ class Ws_User {
     }
     
     // GetUserLottery
-    static func GetUserLottery(user_id: Int, completion:(responseData:[mUserLottery],errorMessage:NSError?)->Void)
+    static func GetUserLottery(user_id: Int, completion:(responseData:mUserLottery,errorMessage:NSError?)->Void)
     {
-        var userLottery = [mUserLottery]()
+        var userLottery:mUserLottery!
         let url = NSURL(string: "http://tskyonline.com:83/Ws_User/GetUserLottery?user_id=" + String(user_id))
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -136,10 +136,12 @@ class Ws_User {
                 //                print("================================================================")
                 //                print("jsonResult : " + String(jsonResult))
                 //                print("================================================================")
-                if let arrayOfDictionaries = jsonResult as? [[String: AnyObject]] {
-                    for dictionary in arrayOfDictionaries {
-                        userLottery.append(mUserLottery(dictionary: dictionary))
-                    }
+                if let arrayOfDictionaries = jsonResult as? AnyObject {
+//                    for dictionary in arrayOfDictionaries {
+//                        userLottery.append(mUserLottery(dictionary: dictionary))
+//                    }
+                    userLottery = mUserLottery(dictionary: arrayOfDictionaries as! AnyObject)
+                    
                     completion(responseData: userLottery, errorMessage: error)
                 } else {
                     print("Error")

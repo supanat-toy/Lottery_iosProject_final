@@ -11,23 +11,19 @@ import Foundation
 
 class mUserLottery {
     
-    var userLottery_id : Int!
-    var user_id : Int!
-    var numbers : String!
-    var prize_baht : Int!
-    var period_lottery_date : String!
-    var status_result : String!
-    var create_datetime : String!
+    var next_lottery_period_date : String!
+    var userGroupLottery : [mUserGroupLottery]!
     
-    
+
     init(dictionary: AnyObject) {
-        self.userLottery_id = dictionary["userLottery_id"] as? Int
-        self.user_id = dictionary["user_id"] as? Int
-        self.numbers = dictionary["numbers"] as? String
-        self.prize_baht = dictionary["prize_baht"] as? Int
-        self.period_lottery_date = dictionary["period_lottery_date"] as? String
-        self.status_result = dictionary["status_result"] as? String
-        self.create_datetime = dictionary["create_datetime"] as? String
+        self.next_lottery_period_date = dictionary["next_lottery_period_date"] as? String
+        //self.userGroupLottery = dictionary["userGroupLottery"] as? Int
+        
+        let arrayOfDictionaries = dictionary["userGroupLottery"] as? [[String: AnyObject]]
+        for dictionary in arrayOfDictionaries! {
+            userGroupLottery.append(mUserGroupLottery(dictionary: dictionary))
+        }
+        
     }
     
 }

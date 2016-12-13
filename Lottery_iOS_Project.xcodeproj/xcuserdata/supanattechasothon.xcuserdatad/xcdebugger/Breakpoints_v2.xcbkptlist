@@ -285,7 +285,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "154"
             endingLineNumber = "154"
-            landmarkName = "AddCommentDiscuss(_:discuss_id:message:completion:)"
+            landmarkName = "AddCommentDiscuss(user_id:discuss_id:message:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1101,7 +1101,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
-            landmarkName = "AddNewDiscuss(_:period_lottery_date:numbers:message:completion:)"
+            landmarkName = "AddNewDiscuss(user_id:period_lottery_date:numbers:message:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

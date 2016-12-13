@@ -43,6 +43,8 @@
 		16E9566E1DEF385B003D8BDD /* Ws_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9566B1DEF385B003D8BDD /* Ws_User.swift */; };
 		16E956721DEF38EB003D8BDD /* DiscussTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956701DEF38EB003D8BDD /* DiscussTableViewCell.swift */; };
 		16E956731DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956711DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift */; };
+		16EAA6781DFFF14A00FA1694 /* mUserGroupLottery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EAA6771DFFF14A00FA1694 /* mUserGroupLottery.swift */; };
+		16EAA67A1DFFF16400FA1694 /* mUserLotteryNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EAA6791DFFF16400FA1694 /* mUserLotteryNumber.swift */; };
 		16FA36FA1DFC3CEB00F8E599 /* FunctionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36F91DFC3CEB00F8E599 /* FunctionsProvider.swift */; };
 		16FA36FC1DFC3DFB00F8E599 /* DrawLotteryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36FB1DFC3DFB00F8E599 /* DrawLotteryProvider.swift */; };
 		16FA36FE1DFC687500F8E599 /* PickerViewDateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FA36FD1DFC687500F8E599 /* PickerViewDateProvider.swift */; };
@@ -90,6 +92,8 @@
 		16E9566B1DEF385B003D8BDD /* Ws_User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ws_User.swift; sourceTree = "<group>"; };
 		16E956701DEF38EB003D8BDD /* DiscussTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussTableViewCell.swift; sourceTree = "<group>"; };
 		16E956711DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussReplyTableViewCell.swift; sourceTree = "<group>"; };
+		16EAA6771DFFF14A00FA1694 /* mUserGroupLottery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mUserGroupLottery.swift; sourceTree = "<group>"; };
+		16EAA6791DFFF16400FA1694 /* mUserLotteryNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mUserLotteryNumber.swift; sourceTree = "<group>"; };
 		16FA36F91DFC3CEB00F8E599 /* FunctionsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsProvider.swift; sourceTree = "<group>"; };
 		16FA36FB1DFC3DFB00F8E599 /* DrawLotteryProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawLotteryProvider.swift; sourceTree = "<group>"; };
 		16FA36FD1DFC687500F8E599 /* PickerViewDateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewDateProvider.swift; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				16E956551DEF3839003D8BDD /* mLottery.swift */,
 				16E956561DEF3839003D8BDD /* mLotteryPrizeNumber.swift */,
 				16E956571DEF3839003D8BDD /* mUserLottery.swift */,
+				16EAA6771DFFF14A00FA1694 /* mUserGroupLottery.swift */,
+				16EAA6791DFFF16400FA1694 /* mUserLotteryNumber.swift */,
 				16E956581DEF3839003D8BDD /* mUser.swift */,
 				16E956591DEF3839003D8BDD /* mDiscuss.swift */,
 				16E9565A1DEF3839003D8BDD /* mDiscussPeriod.swift */,
@@ -340,6 +346,7 @@
 				16E956511DEF37ED003D8BDD /* DiscussDetailsViewController.swift in Sources */,
 				169FF9251DFE3729006757B2 /* RegistrationViewController.swift in Sources */,
 				16E956641DEF3839003D8BDD /* mDiscussPeriod.swift in Sources */,
+				16EAA67A1DFFF16400FA1694 /* mUserLotteryNumber.swift in Sources */,
 				16E956481DEF3741003D8BDD /* LotteryIndexViewController.swift in Sources */,
 				16E9566D1DEF385B003D8BDD /* Ws_Lottery.swift in Sources */,
 				16E956601DEF3839003D8BDD /* mLotteryPrizeNumber.swift in Sources */,
@@ -363,6 +370,7 @@
 				16E956651DEF3839003D8BDD /* mDiscussReply.swift in Sources */,
 				16E956501DEF37ED003D8BDD /* DiscussIndexViewController.swift in Sources */,
 				169FF92A1DFE3729006757B2 /* LotteryUserViewController.swift in Sources */,
+				16EAA6781DFFF14A00FA1694 /* mUserGroupLottery.swift in Sources */,
 				16E956521DEF37ED003D8BDD /* DiscussAddViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
