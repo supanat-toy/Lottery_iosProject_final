@@ -64,6 +64,20 @@ class FunctionsProvider:UIViewController, ADBannerViewDelegate {
         return day + "/" + month + "/" + year
     }
     
+    func GetDateTimeNow() -> String {
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year, .Hour, .Minute], fromDate: date)
+        
+        let year =  String(components.year+543)
+        let month = String(components.month)
+        let day = String(components.day)
+        let hour = String(components.hour)
+        let minute = String(components.minute)
+        
+        return "\(day)/\(month)/\(year) \(hour):\(minute)"
+    }
+    
     func GetDateMinus543(date:String) -> String{
         let dateArr = date.characters.split{$0 == "/"}.map(String.init)
         var day = dateArr[0]

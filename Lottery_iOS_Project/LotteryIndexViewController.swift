@@ -32,8 +32,9 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
     //var scrollView_Lottery: UIScrollView!
     let alertMessage = UIAlertView()
     var textInput = UITextField(frame: CGRect(x: 0, y: 0, width:0, height: 0))
-    
+    var isFirstPerioid_SaveLottery_CoreData = true
     var current_datePicker: String = ""
+    var subTitle_navigationBar: String = ""
     
     func tap(gesture: UITapGestureRecognizer) {
         textInput.resignFirstResponder()
@@ -43,17 +44,25 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.refreshControl.beginRefreshing()
+        CoreData_Lottery.GetLottery("") { (responseData, errorMessage) in
+            self.wsLotteryPeriod = responseData
+            self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: responseData.last_update_dateTime)
+            self.subTitle_navigationBar = responseData.last_update_dateTime
+        }
+        
         
         uiPickerView_dateLottery.dataSource = self;
         uiPickerView_dateLottery.delegate = self;
         
         //scrollView_Lottery = UIScrollView(frame: CGRectMake( 0, 110, WIDTH, HEIGHT-210))
-        scrollView_Lottery1.alwaysBounceVertical = true
+        //scrollView_Lottery1.alwaysBounceVertical = true
         refreshControl.addTarget(self, action: "refresh_wsGetLottery", forControlEvents: .ValueChanged)
         let tapGesture = UITapGestureRecognizer(target: self, action: "tap:")
         view.addGestureRecognizer(tapGesture)
         
         scrollView_Lottery1.addSubview(refreshControl)
+        
         refreshControl.beginRefreshing()
         
         var functions = FunctionsProvider()
@@ -65,9 +74,10 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         selected_yearPickker = Int(dateArr[2])! + 543
         current_datePicker = String(selected_dayPicker) + "/" + String(selected_monthPicker) + "/" + String(selected_yearPickker)
         
-        refresh_wsGetLottery()
+        
         self.setupPickerView_dateLottery()
         self.view.addSubview(functions.loadAds())
+        refresh_wsGetLottery()
         
     }
 
@@ -86,19 +96,31 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         
         var index = yearList.indexOf({$0 == String(selected_yearPickker)})!
         uiPickerView_dateLottery.selectRow(index, inComponent: 2, animated: true)
+        self.isFirstPerioid_SaveLottery_CoreData = false
     }
     
     
     func refresh_wsGetLottery(){
+        self.refreshControl.endRefreshing()
         self.refreshControl.beginRefreshing()
+        
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "กำลังโหลดข้อมูลใหม่")
         Ws_Lottery.GetLottery(current_datePicker) { (responseData, errorMessage) in
             dispatch_async(dispatch_get_main_queue(), {
-                
+                for view in self.scrollView_Lottery1.subviews {
+                    view.removeFromSuperview()
+                }
+                self.scrollView_Lottery1.addSubview(self.refreshControl)
                 self.wsLotteryPeriod = responseData
                 
                 self.drawViewLottery(self.wsLotteryPeriod.lottery)
                 self.navigateBar_bottom.topItem?.title = self.wsLotteryPeriod.lottery_period_date_thaiName
                 self.refreshControl.endRefreshing()
+                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "ข้อมูลล่าสุด")
+                self.subTitle_navigationBar = "ข้อมูลล่าสุด"
+                if (self.isFirstPerioid_SaveLottery_CoreData){
+                    CoreData_Lottery.SaveLottery_CoreData(responseData)
+                }
                 
             })
         }
@@ -199,10 +221,8 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
     func drawViewLottery(wsLottery: mLottery){
         //scrollView_Lottery = UIScrollView(frame: CGRectMake( 0, 110, WIDTH, HEIGHT+200)) // y = -64
         scrollView_Lottery1.backgroundColor = UIColor(red: 249/255, green: 251/255, blue: 255/255, alpha: 1.0)
-
-        scrollView_Lottery1.contentSize = CGSize(
-            width: WIDTH,
-            height: HEIGHT)
+        var scrollHeight = scrollView_Lottery1.bounds.height
+        
 
         var drawLotteyProvider = DrawLotteryProvider()
         
@@ -216,6 +236,11 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         scrollView_Lottery1.addSubview(view_prize_2rear)
         scrollView_Lottery1.addSubview(view_prize_3front_rear)
         scrollView_Lottery1.addSubview(button_see_more)
+        
+        scrollView_Lottery1.contentSize = CGSize(
+            width: WIDTH,
+            height: HEIGHT)
+        scrollView_Lottery1.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight)
     }
     
     func draw_button_see_more() -> UIButton{
@@ -234,6 +259,8 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryDetail_StoryBoard_id") as! LotteryDetailsViewController
         vc.wsLotteryPeriod = wsLotteryPeriod
         vc.current_datePicker = current_datePicker
+        vc.isFirstPerioid_SaveLottery_CoreData = isFirstPerioid_SaveLottery_CoreData
+        vc.subTitle_navigationBar = subTitle_navigationBar
         //vc.faculty_details = foodList[sender.tag] as! NSDictionary
         self.navigationController?.pushViewController(vc, animated: true)
     }

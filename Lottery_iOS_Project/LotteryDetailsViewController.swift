@@ -27,10 +27,10 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     var datePicker_lotteryDate = UIDatePicker()
     var view_prize_4th_height:CGFloat!
     var isChangePickerDate: Bool = false
-    
+    var isFirstPerioid_SaveLottery_CoreData = true
     //var scrollView_Lottery: UIScrollView!
     var current_datePicker: String = ""
-    
+    var subTitle_navigationBar: String = ""
     @IBOutlet weak var navigateBar_bottom: UINavigationBar!
     var wsLotteryPeriod: mLotteryPeriod!
     
@@ -39,12 +39,13 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         //scrollView_Lottery = UIScrollView(frame: CGRectMake( 0, 109, WIDTH, HEIGHT)) // y = -64
         uiPickerView_dateLottery.dataSource = self;
         uiPickerView_dateLottery.delegate = self;
-        
+        scrollView_Lottery1.addSubview(refreshControl)
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: subTitle_navigationBar)
         drawViewLottery()
         datePicker_lotteryDate.hidden = true
         self.navigateBar_bottom.topItem?.title = wsLotteryPeriod.lottery_period_date_thaiName
         refreshControl.addTarget(self, action: "refresh_wsGetLottery", forControlEvents: .ValueChanged)
-        scrollView_Lottery1.addSubview(refreshControl)
+        
         
         
         let dateArr = current_datePicker.characters.split{$0 == "/"}.map(String.init)
@@ -74,14 +75,25 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     }
     
     func refresh_wsGetLottery(){
+        self.refreshControl.endRefreshing()
         self.refreshControl.beginRefreshing()
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "กำลังโหลดข้อมูลใหม่")
         Ws_Lottery.GetLottery(current_datePicker) { (responseData, errorMessage) in
+            
             dispatch_async(dispatch_get_main_queue(), {
+                for view in self.scrollView_Lottery1.subviews {
+                    view.removeFromSuperview()
+                }
+                self.scrollView_Lottery1.addSubview(self.refreshControl)
                 self.wsLotteryPeriod = responseData
                 
                 self.drawViewLottery()
-                self.navigateBar_bottom.topItem?.title = responseData.lottery_period_date_thaiName
+                self.navigateBar_bottom.topItem?.title = responseData.lottery_period_date_thaiName     
                 self.refreshControl.endRefreshing()
+                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "ข้อมูลล่าสุด")
+                if (self.isFirstPerioid_SaveLottery_CoreData){
+                    CoreData_Lottery.SaveLottery_CoreData(responseData)
+                }
             })
         }
     }

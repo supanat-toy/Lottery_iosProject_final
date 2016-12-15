@@ -151,7 +151,7 @@ class DrawLotteryProvider: UIViewController {
             
             title_Label = UILabel(frame: CGRect(x: position_x, y: position_y , width: v_WIDTH/4, height: 30))
             title_Label.textAlignment = .Left
-            title_Label.font = UIFont.systemFontOfSize(16)
+            title_Label.font = UIFont.systemFontOfSize(14)
             title_Label.text = prize_2nd[i].numbers
             view.addSubview(title_Label)
             
@@ -193,7 +193,7 @@ class DrawLotteryProvider: UIViewController {
             
             title_Label = UILabel(frame: CGRect(x: position_x, y: position_y , width: v_WIDTH/4, height: 30))
             title_Label.textAlignment = .Left
-            title_Label.font = UIFont.systemFontOfSize(16)
+            title_Label.font = UIFont.systemFontOfSize(14)
             title_Label.text = prize_3rd[i].numbers
             view.addSubview(title_Label)
             
@@ -240,21 +240,22 @@ class DrawLotteryProvider: UIViewController {
         
         var previous_number_first = "-1"
         for var i = 0; i < prize_4th.count; i += 1 {
-            var current_number_first = prize_4th[i].numbers
-            current_number_first = String(prize_4th[i].numbers[prize_4th[i].numbers.startIndex.advancedBy(0)])
-            
-            if (current_number_first != previous_number_first){
+            var current_number_first = String(prize_4th[i].numbers[prize_4th[i].numbers.startIndex.advancedBy(0)])
+            var isAddNewBar = false
+            if (current_number_first != previous_number_first){ // bar
                 if (previous_number_first != "-1"){
                     position_y += plus_y
                     calculate_height_View += plus_y
+                    isAddNewBar = true
                 }
+                
                 
                 var view_bar_number = UIView(frame: CGRect(x: 0, y: position_y, width: WIDTH-20, height: 25))
                 
                 view_bar_number.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
                 var title_Label = UILabel(frame: CGRect(x: 15, y: 0, width: v_WIDTH, height: 25))
                 title_Label.textAlignment = .Left
-                title_Label.font = UIFont.systemFontOfSize(16)
+                title_Label.font = UIFont.systemFontOfSize(14)
                 title_Label.textColor = UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
                 title_Label.text = current_number_first
                 view_bar_number.addSubview(title_Label)
@@ -269,12 +270,9 @@ class DrawLotteryProvider: UIViewController {
             var plus_x = CGFloat(count_x)
             var position_x = (v_WIDTH/4)*plus_x+15
             
-            
-            
-            
             title_Label = UILabel(frame: CGRect(x: position_x, y: position_y , width: v_WIDTH/4, height: 30))
             title_Label.textAlignment = .Left
-            title_Label.font = UIFont.systemFontOfSize(16)
+            title_Label.font = UIFont.systemFontOfSize(14)
             title_Label.text = prize_4th[i].numbers
             view.addSubview(title_Label)
             
@@ -282,9 +280,15 @@ class DrawLotteryProvider: UIViewController {
             
             
             if (count_x%4 == 0){
-                count_x = 0
-                position_y += plus_y
-                calculate_height_View += plus_y
+                
+                if(i < prize_4th.count-1){
+                    var next_number_first = String(prize_4th[i+1].numbers[prize_4th[i+1].numbers.startIndex.advancedBy(0)])
+                    if (next_number_first == current_number_first){
+                        count_x = 0
+                        position_y += plus_y
+                        calculate_height_View += plus_y
+                    }
+                }
             }
             
             previous_number_first = current_number_first
@@ -337,7 +341,7 @@ class DrawLotteryProvider: UIViewController {
                 view_bar_number.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
                 var title_Label = UILabel(frame: CGRect(x: 15, y: 0, width: v_WIDTH, height: 25))
                 title_Label.textAlignment = .Left
-                title_Label.font = UIFont.systemFontOfSize(16)
+                title_Label.font = UIFont.systemFontOfSize(14)
                 title_Label.textColor = UIColor(red: 77/255, green: 77/255, blue: 77/255, alpha: 1.0)
                 title_Label.text = current_number_first
                 view_bar_number.addSubview(title_Label)
@@ -357,7 +361,7 @@ class DrawLotteryProvider: UIViewController {
             
             title_Label = UILabel(frame: CGRect(x: position_x, y: position_y , width: v_WIDTH/4, height: 30))
             title_Label.textAlignment = .Left
-            title_Label.font = UIFont.systemFontOfSize(16)
+            title_Label.font = UIFont.systemFontOfSize(14)
             title_Label.text = prize_5th[i].numbers
             view.addSubview(title_Label)
             
@@ -365,9 +369,15 @@ class DrawLotteryProvider: UIViewController {
             
             
             if (count_x%4 == 0 && count_x != 1){
-                count_x = 0
-                position_y += plus_y
-                calculate_height_View += plus_y
+                if(i < prize_5th.count-1){
+                    var next_number_first = String(prize_5th[i+1].numbers[prize_5th[i+1].numbers.startIndex.advancedBy(0)])
+                    if (next_number_first == current_number_first){
+                        count_x = 0
+                        position_y += plus_y
+                        calculate_height_View += plus_y
+                    }
+                }
+                
             }
             
             previous_number_first = current_number_first
