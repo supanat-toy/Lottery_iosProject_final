@@ -9,6 +9,7 @@
 import UIKit
 import iAd
 
+
 class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var uiPickerView_dateDiscuss: UIPickerView!

@@ -7,49 +7,29 @@
 //
 
 import UIKit
-import iAd
+import GoogleMobileAds
 
-class FunctionsProvider:UIViewController, ADBannerViewDelegate {
+class FunctionsProvider:UIViewController, GADBannerViewDelegate {
     
-    var bannerAdView: ADBannerView = ADBannerView()
+    var bannerAdView: GADBannerView = GADBannerView()
     
-    func loadAds() -> ADBannerView {
+    func loadAds() -> GADBannerView {
         let screenBounds: CGRect = UIScreen.mainScreen().bounds
+        let size = 320
+        let screenWidth = self.view.frame.size.width
         
-        var bannerAdView: ADBannerView
-        bannerAdView = ADBannerView(frame: CGRect(x: 0, y: screenBounds.height-100, width: screenBounds.width, height: 50))
-        bannerAdView.backgroundColor = UIColor.blackColor()
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID]
+        
+        var bannerAdView: GADBannerView
+        bannerAdView = GADBannerView(frame: CGRect(x: (screenWidth / 2) - CGFloat(size / 2), y: screenBounds.height-100, width: 320, height: 50))
         bannerAdView.delegate = self
-        bannerAdView.hidden = false
+        bannerAdView.adUnitID = "ca-app-pub-2249744611088216/6482569886"
+        bannerAdView.rootViewController = self
+        bannerAdView.loadRequest(request)
         //self.canDisplayBannerAds = true
         return bannerAdView
     }
-    
-    //Delegate methods for AdBannerView
-    
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError
-        error: NSError!) {
-        print("failed to load ad")
-        
-        banner.removeFromSuperview() //Remove the banner (No ad)
-    }
-    
-    func bannerViewWillLoadAd(banner: ADBannerView!) {
-        print("bannerViewWillLoadAd")
-    }
-    
-    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
-        print("bannerViewDidLoadAd()")
-        return true
-    }
-    
-    func bannerViewDidLoadAd(banner: ADBannerView!) {
-        bannerAdView.hidden = false
-        //banner.frame = CGRect(x: 0, y: 400, width: WIDTH, height: 50)
-        print("success bannerViewDidLoadAd() ")
-        self.view.addSubview(banner) //Add banner to view (Ad loaded)
-    }
-    
     //------------------------------------------------------------------
     
     func GetDateNow() -> String {
