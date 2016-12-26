@@ -19,16 +19,68 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     
     var userID:Int!
 
+    var theList: mUserLottery!
+    var nextLottery: String!
+    
+    @IBOutlet weak var theTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "buttonTapped:")
+        self.navigationItem.rightBarButtonItem = button
         // Do any additional setup after loading the view.
-       // Ws_User.GetUserLottery(userID, completion: <#T##(responseData: [mUserLottery], errorMessage: NSError?) -> Void#>)
+       
+        //getLottery()
+    }
+    
+    func getLottery(){
+        Ws_User.GetUserLottery(userID, completion: {(responseData, errorMessage) -> Void in
+        //Ws_User.GetUserLottery(1, completion: {(responseData, errorMessage) -> Void in
+        
+            self.nextLottery = responseData.next_lottery_period_date
+            
+            self.theList = responseData
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func buttonTapped(sender: UIBarButtonItem){
+        print("right bar button tapped")
+        
+        //let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: nextLottery, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: "peanut", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addTextFieldWithConfigurationHandler{
+            (textField) -> Void in
+        }
+        
+        alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: {(action) -> Void in
+            
+            let textField = alert.textFields![0] as UITextField
+            print(textField.text)
+            
+            //Ws_User.AddUserLottery(self.userID, numbers: textField.text!, period_lottery_date: self.nextLottery, completion: {(responseData, errorMessage) -> Void in
+            Ws_User.AddUserLottery(1, numbers: textField.text!, period_lottery_date: "1/10/2559", completion: {(responseData, errorMessage) -> Void in
+                //
+            })
+            
+            //self.getLottery()
+            self.theTable.reloadData()
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "ยกเลิก", style: .Default, handler: {(action) -> Void in
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
  
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
