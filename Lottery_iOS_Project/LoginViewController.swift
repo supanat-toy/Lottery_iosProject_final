@@ -20,8 +20,15 @@ class LoginViewController: UIViewController {
         emailField.text = ""
         passwordField.text = ""
         // Do any additional setup after loading the view.
+        
     }
 
+    override func viewWillAppear(animated: Bool) {
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

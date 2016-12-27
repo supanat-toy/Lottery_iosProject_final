@@ -22,9 +22,6 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-       // Ws_User.GetUserLottery(userID, completion: <#T##(responseData: [mUserLottery], errorMessage: NSError?) -> Void#>)
-        
         Ws_User.GetUserLottery(userID) { (responseData, errorMessage) in
             var a:Int = 0
         }

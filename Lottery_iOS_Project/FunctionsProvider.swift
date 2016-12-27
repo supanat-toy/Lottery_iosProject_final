@@ -19,7 +19,7 @@ class FunctionsProvider:UIViewController, GADBannerViewDelegate {
         let screenWidth = self.view.frame.size.width
         
         let request = GADRequest()
-        request.testDevices = [kGADSimulatorID]
+        //request.testDevices = [kGADSimulatorID]
         
         var bannerAdView: GADBannerView
         bannerAdView = GADBannerView(frame: CGRect(x: (screenWidth / 2) - CGFloat(size / 2), y: screenBounds.height-100, width: 320, height: 50))

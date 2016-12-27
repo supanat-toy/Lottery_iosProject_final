@@ -45,11 +45,7 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl.beginRefreshing()
-        CoreData_Lottery.GetLottery("") { (responseData, errorMessage) in
-            self.wsLotteryPeriod = responseData
-            self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: responseData.last_update_dateTime)
-            self.subTitle_navigationBar = responseData.last_update_dateTime
-        }
+        
         
         
         uiPickerView_dateLottery.dataSource = self;
@@ -77,7 +73,20 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         
         self.setupPickerView_dateLottery()
         self.view.addSubview(functions.loadAds())
-        refresh_wsGetLottery()
+        
+        var ip:InternetProvider = InternetProvider()
+        if (InternetProvider.isInternetAvailable()){
+            refresh_wsGetLottery()
+        }
+        else {
+            CoreData_Lottery.GetLottery("") { (responseData, errorMessage) in
+                self.wsLotteryPeriod = responseData
+                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: responseData.last_update_dateTime)
+                self.subTitle_navigationBar = responseData.last_update_dateTime
+            }
+        }
+        
+        
         
     }
 
@@ -96,6 +105,8 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         
         var index = yearList.indexOf({$0 == String(selected_yearPickker)})!
         uiPickerView_dateLottery.selectRow(index, inComponent: 2, animated: true)
+        
+        
         self.isFirstPerioid_SaveLottery_CoreData = false
     }
     
@@ -118,10 +129,10 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
                 self.refreshControl.endRefreshing()
                 self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "ข้อมูลล่าสุด")
                 self.subTitle_navigationBar = "ข้อมูลล่าสุด"
+                
                 if (self.isFirstPerioid_SaveLottery_CoreData){
                     CoreData_Lottery.SaveLottery_CoreData(responseData)
                 }
-                
             })
         }
     }

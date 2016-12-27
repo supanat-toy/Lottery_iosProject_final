@@ -29,6 +29,7 @@
 		169FF92A1DFE3729006757B2 /* LotteryUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169FF9211DFE3729006757B2 /* LotteryUserViewController.swift */; };
 		169FF92B1DFE3729006757B2 /* LotteryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169FF9221DFE3729006757B2 /* LotteryListViewController.swift */; };
 		169FF9301DFE37B0006757B2 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 169FF92E1DFE37B0006757B2 /* DLRadioButton.m */; };
+		16B9F6041E121C2D0074D4F4 /* InternetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B9F6031E121C2D0074D4F4 /* InternetProvider.swift */; };
 		16E956481DEF3741003D8BDD /* LotteryIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956441DEF3741003D8BDD /* LotteryIndexViewController.swift */; };
 		16E956491DEF3741003D8BDD /* LotteryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956451DEF3741003D8BDD /* LotteryDetailsViewController.swift */; };
 		16E9564A1DEF3741003D8BDD /* LotteryPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E956461DEF3741003D8BDD /* LotteryPDFViewController.swift */; };
@@ -86,6 +87,7 @@
 		169FF92D1DFE37B0006757B2 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		169FF92E1DFE37B0006757B2 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		169FF92F1DFE37B0006757B2 /* Lottery_iOS_Project-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Lottery_iOS_Project-Bridging-Header.h"; sourceTree = "<group>"; };
+		16B9F6031E121C2D0074D4F4 /* InternetProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetProvider.swift; sourceTree = "<group>"; };
 		16E956441DEF3741003D8BDD /* LotteryIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryIndexViewController.swift; sourceTree = "<group>"; };
 		16E956451DEF3741003D8BDD /* LotteryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryDetailsViewController.swift; sourceTree = "<group>"; };
 		16E956461DEF3741003D8BDD /* LotteryPDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryPDFViewController.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 		16FA36F81DFC3CCE00F8E599 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				16B9F6031E121C2D0074D4F4 /* InternetProvider.swift */,
 				16FA36FD1DFC687500F8E599 /* PickerViewDateProvider.swift */,
 				16FA36F91DFC3CEB00F8E599 /* FunctionsProvider.swift */,
 				16FA36FB1DFC3DFB00F8E599 /* DrawLotteryProvider.swift */,
@@ -382,6 +385,7 @@
 				169FF9271DFE3729006757B2 /* ChangePasswordViewController.swift in Sources */,
 				169FF9241DFE3729006757B2 /* UserViewController.swift in Sources */,
 				16873E151E03143C0074EDDA /* GetPush_Notification.swift in Sources */,
+				16B9F6041E121C2D0074D4F4 /* InternetProvider.swift in Sources */,
 				1632AF371DC4A31C00DF20DD /* AppDelegate.swift in Sources */,
 				16E956731DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift in Sources */,
 				16FA36FA1DFC3CEB00F8E599 /* FunctionsProvider.swift in Sources */,
