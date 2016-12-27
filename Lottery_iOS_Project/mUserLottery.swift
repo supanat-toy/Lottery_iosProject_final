@@ -12,7 +12,7 @@ import Foundation
 class mUserLottery {
     
     var next_lottery_period_date : String!
-    var userGroupLottery : [mUserGroupLottery]!
+    var userGroupLottery = [mUserGroupLottery]()
     
 
     init(dictionary: AnyObject) {
