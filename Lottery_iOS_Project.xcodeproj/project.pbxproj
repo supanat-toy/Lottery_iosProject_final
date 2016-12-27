@@ -340,6 +340,11 @@
 						DevelopmentTeam = 6VCMU63L9B;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
