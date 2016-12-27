@@ -51,9 +51,8 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func buttonTapped(sender: UIBarButtonItem){
-        print("right bar button tapped")
+        //print("right bar button tapped")
         
-        //let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: nextLottery, preferredStyle: UIAlertControllerStyle.Alert)
         let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: self.nextLottery, preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addTextFieldWithConfigurationHandler{
@@ -92,7 +91,6 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return self.theList[section].lottery_period_date
-        //return "blah blah"
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.theList[section].userLotteryList.count
@@ -141,13 +139,8 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             cell.rewardType.text = "รางวัลสองตัว"
          
         default:
-            cell.rewardType.text = ""
+            cell.rewardType.text = "  "
         }
-        
-        
-        
         return cell
     }
-
-    
 }
