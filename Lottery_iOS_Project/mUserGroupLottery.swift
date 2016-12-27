@@ -11,7 +11,7 @@ import Foundation
 class mUserGroupLottery {
     
     var lottery_period_date : String!
-    var userLotteryList : [mUserLotteryNumber]!
+    var userLotteryList = [mUserLotteryNumber]()
     
     init(dictionary: AnyObject) {
         self.lottery_period_date = dictionary["lottery_period_date"] as? String

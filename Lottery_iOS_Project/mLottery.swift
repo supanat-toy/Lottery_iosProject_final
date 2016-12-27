@@ -20,6 +20,17 @@ class mLottery {
     var prize_5th = [mLotteryPrizeNumber]()
     
     
+    init() {
+        self.prize_1st = mLotteryPrizeNumber()
+        self.prize_nearby_1st = [mLotteryPrizeNumber]()
+        self.prize_2rear = mLotteryPrizeNumber()
+        self.prize_3front = [mLotteryPrizeNumber]()
+        self.prize_3rear = [mLotteryPrizeNumber]()
+        self.prize_2nd = [mLotteryPrizeNumber]()
+        self.prize_3rd = [mLotteryPrizeNumber]()
+        self.prize_4th = [mLotteryPrizeNumber]()
+        self.prize_5th = [mLotteryPrizeNumber]()
+    }
     init(dictionary: AnyObject) {
         self.prize_1st = mLotteryPrizeNumber(dictionary: (dictionary["prize_1st"] as? [String: AnyObject])!)
         

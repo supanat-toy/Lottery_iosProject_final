@@ -19,7 +19,7 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     
     var userID:Int!
 
-    var theList: mUserLottery!
+    var theList = [mUserGroupLottery]()
     var nextLottery: String!
     
     @IBOutlet weak var theTable: UITableView!
@@ -28,20 +28,21 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
 
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "buttonTapped:")
         self.navigationItem.rightBarButtonItem = button
-        // Do any additional setup after loading the view.
-       
-        //getLottery()
+        getLottery()
+        self.theTable.reloadData()
     }
     
     func getLottery(){
         Ws_User.GetUserLottery(userID, completion: {(responseData, errorMessage) -> Void in
         //Ws_User.GetUserLottery(1, completion: {(responseData, errorMessage) -> Void in
         
+        
             self.nextLottery = responseData.next_lottery_period_date
             
-            self.theList = responseData
+            self.theList = responseData.userGroupLottery
             
         })
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +54,7 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         print("right bar button tapped")
         
         //let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: nextLottery, preferredStyle: UIAlertControllerStyle.Alert)
-        let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: "peanut", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: self.nextLottery, preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addTextFieldWithConfigurationHandler{
             (textField) -> Void in
@@ -64,12 +65,11 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             let textField = alert.textFields![0] as UITextField
             print(textField.text)
             
-            //Ws_User.AddUserLottery(self.userID, numbers: textField.text!, period_lottery_date: self.nextLottery, completion: {(responseData, errorMessage) -> Void in
-            Ws_User.AddUserLottery(1, numbers: textField.text!, period_lottery_date: "1/10/2559", completion: {(responseData, errorMessage) -> Void in
+            Ws_User.AddUserLottery(self.userID, numbers: textField.text!, period_lottery_date: self.nextLottery, completion: {(responseData, errorMessage) -> Void in
                 //
             })
             
-            //self.getLottery()
+            self.getLottery()
             self.theTable.reloadData()
             
         }))
@@ -77,6 +77,7 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         alert.addAction(UIAlertAction(title: "ยกเลิก", style: .Default, handler: {(action) -> Void in
             
             self.dismissViewControllerAnimated(true, completion: nil)
+            self.theTable.reloadData()//test
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -85,24 +86,65 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
  
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 3
+        return self.theList.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return "blahBlah"
+        return self.theList[section].lottery_period_date
+        //return "blah blah"
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.theList[section].userLotteryList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("lotteryListCell", forIndexPath: indexPath) as! LotteryListCell
         
-        cell.lotteryNum.text = "123456"
-        cell.rewardAmount.text = "200000"
-        cell.rewardType.text = "รางวัลที่หนึ่ง"
+        cell.lotteryNum.text = self.theList[indexPath.section].userLotteryList[indexPath.row].numbers
+        
+        let prize = self.theList[indexPath.section].userLotteryList[indexPath.row].prize_baht
+        
+        
+        if(prize > 999){
+            cell.rewardAmount.textColor = UIColor.greenColor()
+        }else{
+            cell.rewardAmount.textColor = UIColor.blackColor()
+        }
+        cell.rewardAmount.text = String(self.theList[indexPath.section].userLotteryList[indexPath.row].prize_baht)
+        
+        switch(prize){
+        
+        case 3000000:
+            cell.rewardType.text = "รางวัลที่หนึ่ง"
+            break
+        case 100000:
+            cell.rewardType.text = "รางวัลที่สอง"
+            break
+        case 40000:
+            cell.rewardType.text = "รางวัลที่สาม"
+            break
+        case 20000:
+            cell.rewardType.text = "รางวัลที่สี่"
+            break
+        case 10000:
+            cell.rewardType.text = "รางวัลที่ห้า"
+            break
+        case 50000:
+            cell.rewardType.text = "รางวัลข้างเคียง"
+            break
+        case 2000:
+            cell.rewardType.text = "รางวัลสามตัว"
+            break
+        case 1000:
+            cell.rewardType.text = "รางวัลสองตัว"
+         
+        default:
+            cell.rewardType.text = ""
+        }
+        
+        
         
         return cell
     }

@@ -59,7 +59,7 @@ class Ws_Discuss {
                 //                print("================================================================")
                 //                print("jsonResult : " + String(jsonResult))
                 //                print("================================================================")
-                print("jsonResult", jsonResult)
+                //print("jsonResult", jsonResult)
                 if let arrayOfDictionaries = jsonResult as? AnyObject {
                     
                     messageResponse = mMessageResponse(dictionary: arrayOfDictionaries as! AnyObject)
@@ -157,7 +157,7 @@ class Ws_Discuss {
                 //                print("================================================================")
                 //                print("jsonResult : " + String(jsonResult))
                 //                print("================================================================")
-                print("jsonResult", jsonResult)
+                //print("jsonResult", jsonResult)
                 if let arrayOfDictionaries = jsonResult as? AnyObject {
                     
                     messageResponse = mMessageResponse(dictionary: arrayOfDictionaries as! AnyObject)

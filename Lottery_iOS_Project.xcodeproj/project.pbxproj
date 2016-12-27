@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16260EDF1E041EEE0024FE3B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16260EDE1E041EEE0024FE3B /* GoogleMobileAds.framework */; };
+		16260EE11E041F030024FE3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16260EE01E041F030024FE3B /* GoogleService-Info.plist */; };
+		16260EE31E0428830024FE3B /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16260EE21E0428830024FE3B /* MicrosoftAzureMobile.framework */; };
+		162CCFF51E01287F00936B5D /* Lottery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 162CCFF31E01287F00936B5D /* Lottery.xcdatamodeld */; };
+		162CCFFA1E012E2900936B5D /* CoreData_Lottery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162CCFF91E012E2900936B5D /* CoreData_Lottery.swift */; };
 		1632AF371DC4A31C00DF20DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632AF361DC4A31C00DF20DD /* AppDelegate.swift */; };
 		1632AF3C1DC4A31C00DF20DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3A1DC4A31C00DF20DD /* Main.storyboard */; };
 		1632AF3E1DC4A31C00DF20DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3D1DC4A31C00DF20DD /* Assets.xcassets */; };
 		1632AF411DC4A31C00DF20DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3F1DC4A31C00DF20DD /* LaunchScreen.storyboard */; };
+		16873E0C1E02EB950074EDDA /* DrawNavigationTitleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16873E0B1E02EB950074EDDA /* DrawNavigationTitleProvider.swift */; };
+		16873E131E03142E0074EDDA /* AddDevice_Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16873E121E03142E0074EDDA /* AddDevice_Notification.swift */; };
+		16873E151E03143C0074EDDA /* GetPush_Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16873E141E03143C0074EDDA /* GetPush_Notification.swift */; };
 		169FF9231DFE3729006757B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169FF91A1DFE3729006757B2 /* LoginViewController.swift */; };
 		169FF9241DFE3729006757B2 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169FF91B1DFE3729006757B2 /* UserViewController.swift */; };
 		169FF9251DFE3729006757B2 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169FF91C1DFE3729006757B2 /* RegistrationViewController.swift */; };
@@ -52,12 +60,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16260EDE1E041EEE0024FE3B /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		16260EE01E041F030024FE3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		16260EE21E0428830024FE3B /* MicrosoftAzureMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftAzureMobile.framework; sourceTree = "<group>"; };
+		162CCFF41E01287F00936B5D /* Lottery.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lottery.xcdatamodel; sourceTree = "<group>"; };
+		162CCFF91E012E2900936B5D /* CoreData_Lottery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData_Lottery.swift; sourceTree = "<group>"; };
 		1632AF331DC4A31C00DF20DD /* Lottery_iOS_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lottery_iOS_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1632AF361DC4A31C00DF20DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1632AF3B1DC4A31C00DF20DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1632AF3D1DC4A31C00DF20DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1632AF401DC4A31C00DF20DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1632AF421DC4A31C00DF20DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16873E0B1E02EB950074EDDA /* DrawNavigationTitleProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawNavigationTitleProvider.swift; sourceTree = "<group>"; };
+		16873E121E03142E0074EDDA /* AddDevice_Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDevice_Notification.swift; sourceTree = "<group>"; };
+		16873E141E03143C0074EDDA /* GetPush_Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPush_Notification.swift; sourceTree = "<group>"; };
 		169FF91A1DFE3729006757B2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		169FF91B1DFE3729006757B2 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		169FF91C1DFE3729006757B2 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +121,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16260EDF1E041EEE0024FE3B /* GoogleMobileAds.framework in Frameworks */,
+				16260EE31E0428830024FE3B /* MicrosoftAzureMobile.framework in Frameworks */,
 				16FCA2251DFC09EA0024381C /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,10 +130,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		162CCFF61E012BB900936B5D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				162CCFF91E012E2900936B5D /* CoreData_Lottery.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		1632AF2A1DC4A31B00DF20DD = {
 			isa = PBXGroup;
 			children = (
+				16260EE21E0428830024FE3B /* MicrosoftAzureMobile.framework */,
+				16260EDE1E041EEE0024FE3B /* GoogleMobileAds.framework */,
 				1632AF351DC4A31C00DF20DD /* Lottery_iOS_Project */,
+				162CCFF31E01287F00936B5D /* Lottery.xcdatamodeld */,
 				1632AF341DC4A31C00DF20DD /* Products */,
 				16FCA2231DFC09EA0024381C /* Frameworks */,
 			);
@@ -132,6 +161,8 @@
 		1632AF351DC4A31C00DF20DD /* Lottery_iOS_Project */ = {
 			isa = PBXGroup;
 			children = (
+				16873E0D1E0313140074EDDA /* Notification */,
+				162CCFF61E012BB900936B5D /* CoreData */,
 				169FF92C1DFE37A3006757B2 /* DLRadioButton */,
 				16B08CD11DC5CFB600254C19 /* Web Service */,
 				16B08CD01DC5CFB200254C19 /* Model */,
@@ -139,6 +170,7 @@
 				1632AF3A1DC4A31C00DF20DD /* Main.storyboard */,
 				1632AF3D1DC4A31C00DF20DD /* Assets.xcassets */,
 				1632AF3F1DC4A31C00DF20DD /* LaunchScreen.storyboard */,
+				16260EE01E041F030024FE3B /* GoogleService-Info.plist */,
 				1632AF421DC4A31C00DF20DD /* Info.plist */,
 				1632AF8E1DC50F5000DF20DD /* ViewController */,
 			);
@@ -192,6 +224,15 @@
 				169FF9221DFE3729006757B2 /* LotteryListViewController.swift */,
 			);
 			name = More;
+			sourceTree = "<group>";
+		};
+		16873E0D1E0313140074EDDA /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				16873E121E03142E0074EDDA /* AddDevice_Notification.swift */,
+				16873E141E03143C0074EDDA /* GetPush_Notification.swift */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 		169FF92C1DFE37A3006757B2 /* DLRadioButton */ = {
@@ -248,6 +289,7 @@
 				16FA36FD1DFC687500F8E599 /* PickerViewDateProvider.swift */,
 				16FA36F91DFC3CEB00F8E599 /* FunctionsProvider.swift */,
 				16FA36FB1DFC3DFB00F8E599 /* DrawLotteryProvider.swift */,
+				16873E0B1E02EB950074EDDA /* DrawNavigationTitleProvider.swift */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
@@ -323,6 +365,7 @@
 			files = (
 				1632AF411DC4A31C00DF20DD /* LaunchScreen.storyboard in Resources */,
 				1632AF3E1DC4A31C00DF20DD /* Assets.xcassets in Resources */,
+				16260EE11E041F030024FE3B /* GoogleService-Info.plist in Resources */,
 				169FF9291DFE3729006757B2 /* CustomUISwitchTableViewCell.xib in Resources */,
 				1632AF3C1DC4A31C00DF20DD /* Main.storyboard in Resources */,
 			);
@@ -335,8 +378,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16873E131E03142E0074EDDA /* AddDevice_Notification.swift in Sources */,
 				169FF9271DFE3729006757B2 /* ChangePasswordViewController.swift in Sources */,
 				169FF9241DFE3729006757B2 /* UserViewController.swift in Sources */,
+				16873E151E03143C0074EDDA /* GetPush_Notification.swift in Sources */,
 				1632AF371DC4A31C00DF20DD /* AppDelegate.swift in Sources */,
 				16E956731DEF38EB003D8BDD /* DiscussReplyTableViewCell.swift in Sources */,
 				16FA36FA1DFC3CEB00F8E599 /* FunctionsProvider.swift in Sources */,
@@ -355,6 +400,7 @@
 				169FF9301DFE37B0006757B2 /* DLRadioButton.m in Sources */,
 				16E9564A1DEF3741003D8BDD /* LotteryPDFViewController.swift in Sources */,
 				16E9566C1DEF385B003D8BDD /* Ws_Discuss.swift in Sources */,
+				16873E0C1E02EB950074EDDA /* DrawNavigationTitleProvider.swift in Sources */,
 				16FA36FC1DFC3DFB00F8E599 /* DrawLotteryProvider.swift in Sources */,
 				16E9565E1DEF3839003D8BDD /* mLotteryPeriod.swift in Sources */,
 				16E956611DEF3839003D8BDD /* mUserLottery.swift in Sources */,
@@ -363,7 +409,9 @@
 				16E956661DEF3839003D8BDD /* mGlobalproperty.swift in Sources */,
 				16FA36FE1DFC687500F8E599 /* PickerViewDateProvider.swift in Sources */,
 				16E9564B1DEF3741003D8BDD /* LotterySearchViewController.swift in Sources */,
+				162CCFFA1E012E2900936B5D /* CoreData_Lottery.swift in Sources */,
 				169FF9261DFE3729006757B2 /* PersonalViewController.swift in Sources */,
+				162CCFF51E01287F00936B5D /* Lottery.xcdatamodeld in Sources */,
 				16E956621DEF3839003D8BDD /* mUser.swift in Sources */,
 				16E956721DEF38EB003D8BDD /* DiscussTableViewCell.swift in Sources */,
 				169FF9281DFE3729006757B2 /* CustomUISwitchTableViewCell.swift in Sources */,
@@ -494,6 +542,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6VCMU63L9B;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Lottery_iOS_Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Supanat.Lottery-iOS-Project-SourseTree";
@@ -510,6 +562,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 6VCMU63L9B;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Lottery_iOS_Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Supanat.Lottery-iOS-Project-SourseTree";
@@ -542,6 +598,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		162CCFF31E01287F00936B5D /* Lottery.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				162CCFF41E01287F00936B5D /* Lottery.xcdatamodel */,
+			);
+			currentVersion = 162CCFF41E01287F00936B5D /* Lottery.xcdatamodel */;
+			name = Lottery.xcdatamodeld;
+			path = Lottery_iOS_Project/Lottery.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1632AF2B1DC4A31B00DF20DD /* Project object */;
 }

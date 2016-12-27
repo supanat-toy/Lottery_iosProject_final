@@ -9,6 +9,7 @@
 import UIKit
 import iAd
 
+
 class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var uiPickerView_dateDiscuss: UIPickerView!
@@ -86,7 +87,9 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func refresh_wsGetDiscuss(){
+        self.refreshControl.endRefreshing()
         self.refreshControl.beginRefreshing()
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "กำลังโหลดข้อมูลใหม่")
         Ws_Discuss.GetDiscussList(current_datePicker, user_id: 1) { (responseData, errorMessage) in
             dispatch_async(dispatch_get_main_queue(), {
                 self.wsDiscussPeriod = responseData
@@ -94,6 +97,7 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
                 self.navigateBar_bottom.topItem?.title = self.wsDiscussPeriod.discuss_period_date_thaiName
                 self.tableView_.reloadData()
                 self.refreshControl.endRefreshing()
+                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "ข้อมูลล่าสุด")
                 if (self.isChangePickerDate){
                     var scrollHeight = self.tableView_.contentSize.height
                     self.tableView_.contentSize = CGSize(
