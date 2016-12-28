@@ -23,18 +23,21 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     var nextLottery: String!
     
     @IBOutlet weak var theTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "buttonTapped:")
         self.navigationItem.rightBarButtonItem = button
         getLottery()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         self.theTable.reloadData()
     }
     
     func getLottery(){
         Ws_User.GetUserLottery(userID, completion: {(responseData, errorMessage) -> Void in
-        //Ws_User.GetUserLottery(1, completion: {(responseData, errorMessage) -> Void in
         
         
             self.nextLottery = responseData.next_lottery_period_date
@@ -42,7 +45,6 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             self.theList = responseData.userGroupLottery
             
         })
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +53,6 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func buttonTapped(sender: UIBarButtonItem){
-        //print("right bar button tapped")
         
         let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: self.nextLottery, preferredStyle: UIAlertControllerStyle.Alert)
         
