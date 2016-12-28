@@ -51,7 +51,7 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         self.navigationItem .setHidesBackButton(true, animated: true)
         // Do any additional setup after loading the view.
-        
+        self.title = userName
         memberLabelList.append(userName)
         memberLabelList.append("เปลี่ยนรหัสผ่าน")
         memberLabelList.append("ลอตเตอรี่ของฉัน")

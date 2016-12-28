@@ -33,6 +33,7 @@ class PersonalViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
         
+        self.title = "แก้ไขข้อมูลส่วนตัว"
         nameField.text = name
         birthdayField.text = birthday
         

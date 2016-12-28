@@ -26,6 +26,7 @@ class ChangePasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "เปลี่ยนรหัสผ่าน"
         currentPasswordField.text = currentPassword
         self.hideKeyboardWhenTappedAround()
 
