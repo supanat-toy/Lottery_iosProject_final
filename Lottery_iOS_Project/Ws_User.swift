@@ -100,7 +100,7 @@ class Ws_User {
                          completion:(responseData:mUser,errorMessage:NSError?)->Void)
     {
         var userProfile:mUser!
-        let url = NSURL(string: "http://tskyonline.com:83/Ws_User/UpdateUserProfile?user_id=" + String(user_id) + "&password=" + password + "&name=" + name + "&birthday=" + birthday + "&gender" + gender)
+        let url = NSURL(string: "http://tskyonline.com:83/Ws_User/UpdateUserProfile?user_id=" + String(user_id) + "&password=" + password + "&name=" + name + "&birthday=" + birthday + "&gender=" + gender)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             do {
