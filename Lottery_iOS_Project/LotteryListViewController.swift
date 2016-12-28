@@ -79,10 +79,6 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         alert.addAction(UIAlertAction(title: "ยกเลิก", style: .Default, handler: {(action) -> Void in
             
             self.dismissViewControllerAnimated(true, completion: nil)
-<<<<<<< HEAD
-            //self.theTable.reloadData()//test
-=======
->>>>>>> d7b08067b89a2f6552adf7fdb23f69a53ad43862
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
