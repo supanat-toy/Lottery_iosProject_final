@@ -18,6 +18,11 @@ class mGlobalproperty {
         var resultResponse = dictionary["resultResponse"] as? [String: AnyObject]
         self.resultResponse = mMessageResponse(dictionary: resultResponse!) // as? [String: AnyObject] or [AnyObject]
         var user = dictionary["userProfile"] as? [String: AnyObject]
-        self.userProfile = mUser(dictionary: user!)
+        
+        if (self.resultResponse.result == true){
+            self.userProfile = mUser(dictionary: user!)
+        }
+        
+        
     }
 }
