@@ -48,31 +48,10 @@ class RegistrationViewController: UIViewController {
     }
 
     @IBAction func maleRadioBtn(sender: DLRadioButton) {
-        userGender = "male"
+        userGender = "M"
     }
     @IBAction func femaleRadioBtn(sender: DLRadioButton) {
-        userGender = "female"
-    }
-
-    @IBAction func getBirthday(sender: UITextField) {
-        
-        datePickerRegistration = UIDatePicker()
-        datePickerRegistration.datePickerMode = .Date
-        datePickerRegistration.calendar = NSCalendar(calendarIdentifier: "buddhist")
-        datePickerRegistration.locale = NSLocale(localeIdentifier: "th")
-        
-        sender.inputView = datePickerRegistration
-        
-        let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
-        toolbar.barStyle = UIBarStyle.Default
-        
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(cancelTapped))
-        let emptySpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(doneTapped))
-        
-        toolbar.items = [cancelButton, emptySpace, doneButton]
-        sender.inputAccessoryView = toolbar
-        
+        userGender = "F"
     }
 
     func cancelTapped(sender: UIBarButtonItem!){
@@ -92,6 +71,24 @@ class RegistrationViewController: UIViewController {
         birthdayField.resignFirstResponder()
     }
     
+    @IBAction func getBday(sender: UITextField) {
+        datePickerRegistration = UIDatePicker()
+        datePickerRegistration.datePickerMode = .Date
+        datePickerRegistration.calendar = NSCalendar(calendarIdentifier: "buddhist")
+        datePickerRegistration.locale = NSLocale(localeIdentifier: "th")
+        
+        sender.inputView = datePickerRegistration
+        
+        let toolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
+        toolbar.barStyle = UIBarStyle.Default
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(cancelTapped))
+        let emptySpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(doneTapped))
+        
+        toolbar.items = [cancelButton, emptySpace, doneButton]
+        sender.inputAccessoryView = toolbar
+    }
     @IBAction func registerBtn(sender: UIButton) {
         if(emailField.text == "" || passwordField.text == ""){
             print("peanut")
