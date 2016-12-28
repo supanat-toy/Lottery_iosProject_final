@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class RegularViewCell: UITableViewCell{
 
@@ -21,7 +22,7 @@ class UISwitchViewCell: UITableViewCell{
     @IBOutlet var theSwitch: UISwitch!
 }
 
-class LotteryUserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LotteryUserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 
     
     
@@ -71,6 +72,39 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
         if(sender.tag == 1){
             Ws_User.UpdateGetNewLotteryNotification(userID, isAccepted: sender.on, completion: {(responseData,errorMessage) -> Void in})
         }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController{
+        let mailComposeVC = MFMailComposeViewController()
+        mailComposeVC.mailComposeDelegate = self
+        
+        mailComposeVC.setToRecipients(["ratversion2@msn.com"])
+        mailComposeVC.setSubject("App Feedback")
+        mailComposeVC.setMessageBody("Hi there!\n\nI would like to share the following feedback....", isHTML: false)
+        
+        return mailComposeVC
+    }
+    
+    func showMailErrorAlert(){
+        let sendMailErrorAlert = UIAlertView(title: "Could not send email", message: "Your device could not send email. Please check email configuration and then try again", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        
+        //switch result.value {
+        switch result.rawValue {
+        
+        //case MFMailComposeResultCancelled.value:
+        case MFMailComposeResult.Cancelled.rawValue:
+            print("Cancelled mail")
+        //case MFMailComposeResultSent.value:
+        case MFMailComposeResult.Sent.rawValue:
+            print("Mail Sent")
+        default:
+            break
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -199,10 +233,19 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
             
         case 2:
             if(indexPath.row == 0){
-            
+                let alert = UIAlertController(title: "UNDER CONSTRUCTION", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+
             }
             if(indexPath.row == 1){
-            
+                
+                let mailComposeViewController = configuredMailComposeViewController()
+                if MFMailComposeViewController.canSendMail(){
+                    self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+                }else{
+                    self.showMailErrorAlert()
+                }
             }
             if(indexPath.row == 2){
                 self.navigationController?.popViewControllerAnimated(true)

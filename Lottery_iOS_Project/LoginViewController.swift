@@ -20,18 +20,18 @@ class LoginViewController: UIViewController {
         emailField.text = ""
         passwordField.text = ""
         // Do any additional setup after loading the view.
-        
     }
 
-    override func viewWillAppear(animated: Bool) {
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func forgetPassword(sender: UIButton) {
+        let alert = UIAlertController(title: "UNDER CONSTRUCTION", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+
     }
     
     @IBAction func connect(sender: UIButton) {
