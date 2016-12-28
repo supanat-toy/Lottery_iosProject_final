@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-
+    var user_id: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +20,35 @@ class LoginViewController: UIViewController {
         emailField.text = ""
         passwordField.text = ""
         // Do any additional setup after loading the view.
+        
+        
+        
     }
 
+    override func viewWillAppear(animated: Bool) {
+        if(checkIsLogined()){
+            Ws_User.GetUserProfile(user_id, completion: { (responseData, errorMessage) in
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
+                let userProfile: mUser = responseData
+                
+                vc.userID = userProfile.user_id
+                vc.userEmail = userProfile.email
+                vc.userPassword = userProfile.password
+                vc.userName = userProfile.name
+                vc.userBirthday = userProfile.birthday
+                vc.userGender = userProfile.gender
+                vc.acceptCheckingNotification = userProfile.isAccepted_checking_notification
+                vc.acceptLotteryNotification = userProfile.isAccepted_lottery_notification
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    //self.presentViewController(vc, animated: true, completion: nil)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                })
+                
+            })
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -32,6 +59,18 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
 
+    }
+    
+    func checkIsLogined() -> Bool{
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var login_userID = defaults.objectForKey("login_user") as? Int
+        
+        if (login_userID != nil){
+            user_id = login_userID!
+            return true
+        }else {
+            return false
+        }
     }
     
     @IBAction func connect(sender: UIButton) {
@@ -56,6 +95,13 @@ class LoginViewController: UIViewController {
                     vc.acceptLotteryNotification = globalProperty.userProfile.isAccepted_lottery_notification
                     
                     dispatch_async(dispatch_get_main_queue(), {
+                        
+                        
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        //var favoriteList = defaults.objectForKey("login_user") as? Int
+                        var login_userID = globalProperty.userProfile.user_id
+                        defaults.setObject(login_userID, forKey: "login_user")
+                        self.user_id = login_userID
                         
                         //self.presentViewController(vc, animated: true, completion: nil)
                         self.navigationController?.pushViewController(vc, animated: true)
