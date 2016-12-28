@@ -43,7 +43,6 @@ class PersonalViewController: UIViewController {
         else{
             femaleBtn.selected = true
         }
-        //self.navigationController?.popViewControllerAnimated(false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,8 +76,6 @@ class PersonalViewController: UIViewController {
     func doneTapped(sender: UIBarButtonItem!){
         
         let dateFormatter = NSDateFormatter()
-        //dateFormatter.dateStyle = .MediumStyle
-        //dateFormatter.timeStyle = .NoStyle
         dateFormatter.locale = NSLocale(localeIdentifier: "th")
         dateFormatter.setLocalizedDateFormatFromTemplate("yyyy-MM-dd")
         
@@ -95,11 +92,18 @@ class PersonalViewController: UIViewController {
     }
     
     @IBAction func updatePersonalProfileBtn(sender: UIButton) {
-        let changeUsername = nameField.text
-        let changeBirthday = birthdayField.text
+        let changeUsername = nameField.text!
+        let changeBirthday = birthdayField.text!
         let changeGender = gender
         
-        Ws_User.UpdateUserProfile(ID, password: password, name: changeUsername!, birthday: changeBirthday!, gender: changeGender, completion: {(responseData, errorMessage) -> Void in
+        
+        print(ID)
+        print(password)
+        print(changeUsername)
+        print(changeBirthday)
+        print(changeGender)
+        
+        Ws_User.UpdateUserProfile(ID, password: password, name: changeUsername, birthday: changeBirthday, gender: changeGender, completion: {(responseData, errorMessage) -> Void in
         
             let vs = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
 
@@ -117,5 +121,7 @@ class PersonalViewController: UIViewController {
                 self.navigationController?.pushViewController(vs, animated: true)
             })
         })
+//        Ws_User.UpdateUserProfile(9, password: "1234", name: "Orange", birthday: "12/12/2533", gender: "M", completion: {(responseData, errorMessage) -> Void in
+//        })
     }
 }
