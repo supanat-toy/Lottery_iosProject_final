@@ -56,14 +56,21 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
         memberLabelList.append("เปลี่ยนรหัสผ่าน")
         memberLabelList.append("ลอตเตอรี่ของฉัน")
         
-        //self.navigationController?.popViewControllerAnimated(false)
-        //self.navigationController?.popToRootViewControllerAnimated(false)
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func switchTrigger(sender: UISwitch){
+        
+        if(sender.tag == 0){
+            Ws_User.UpdateCheckingNotification(userID, isAccepted: sender.on, completion: {(reponseData, errorMessage) -> Void in })
+        }
+        if(sender.tag == 1){
+            Ws_User.UpdateGetNewLotteryNotification(userID, isAccepted: sender.on, completion: {(responseData,errorMessage) -> Void in})
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -113,6 +120,19 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
             let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath) as! UISwitchViewCell
             cell.iconImage.image = UIImage(named: switchImageList[indexPath.row])
             cell.textTitleLabel.text = switchLabelList[indexPath.row]
+            
+            cell.theSwitch.tag = indexPath.row
+            
+            if(indexPath.row == 0){
+                cell.theSwitch.setOn(acceptCheckingNotification, animated: false)
+            }
+            if(indexPath.row == 1){
+                cell.theSwitch.setOn(acceptLotteryNotification, animated: false)
+            }
+            
+            cell.theSwitch.addTarget(self, action: "switchTrigger:", forControlEvents: .ValueChanged)
+            print ("the switch indexpath.row is" + String(indexPath.row))
+            
             return cell
             
         case 2:
@@ -132,16 +152,15 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
         
         switch(indexPath.section){
         case 0:
-            //tableView.allowsSelection = true
+            
             if(indexPath.row == 0){
+                //go to personal view, change name, gender, birthday
                 let vs = self.storyboard?.instantiateViewControllerWithIdentifier("personalInfo") as! PersonalViewController
                 
                 vs.name = userName
                 vs.birthday = userBirthday
                 vs.gender = userGender
-                
-//                vs.checkingNotification = acceptCheckingNotification
-//                vs.lotteryNotification = acceptLotteryNotification
+
                 vs.password = userPassword
                 vs.ID = userID
                 vs.email = userEmail
@@ -149,6 +168,7 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
                 self.navigationController?.pushViewController(vs, animated: true)
             }
             if(indexPath.row == 1){
+                //go to change password
                 let vs = self.storyboard?.instantiateViewControllerWithIdentifier("changePassword") as! ChangePasswordViewController
                 
                 vs.currentPassword = userPassword
@@ -162,7 +182,7 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
                 self.navigationController?.pushViewController(vs, animated: true)
             }
             if(indexPath.row == 2){
-                //print("peanut")//go to lottery list of the user
+                //go to lottery list of the user
                 let vs = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryList") as! LotteryListViewController
                 
                 vs.userID = userID
@@ -171,11 +191,13 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
             break
             
         case 1:
-            //tableView.allowsSelection = false
+            //notification
+            if(indexPath.row==0){}
+            if(indexPath.row==1){}
             
             break
+            
         case 2:
-            //tableView.allowsSelection = true
             if(indexPath.row == 0){
             
             }
@@ -186,8 +208,9 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
                 self.navigationController?.popViewControllerAnimated(true)
             }
             break
+            
         default:
-            //tableView.allowsSelection = true
+            
             break
         }
     }
