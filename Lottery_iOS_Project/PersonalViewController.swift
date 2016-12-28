@@ -36,7 +36,7 @@ class PersonalViewController: UIViewController {
         nameField.text = name
         birthdayField.text = birthday
         
-        if(gender == "male"){
+        if(gender == "M"){
             maleBtn.selected = true
         }
         else{
@@ -50,7 +50,7 @@ class PersonalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func editBirthday(sender: UITextField) {
+    @IBAction func setBday(sender: UITextField) {
         datePicker = UIDatePicker()
         datePicker.datePickerMode = .Date
         datePicker.calendar = NSCalendar(calendarIdentifier: "buddhist")
@@ -66,7 +66,6 @@ class PersonalViewController: UIViewController {
         
         toolbar.items = [cancelButton, emptySpace, doneButton]
         sender.inputAccessoryView = toolbar
-        
     }
     
     func cancelTapped(sender: UIBarButtonItem!){
@@ -87,11 +86,11 @@ class PersonalViewController: UIViewController {
     }
 
     @IBAction func maleBtn(sender: DLRadioButton) {
-        gender = "male"
+        gender = "M"
     }
 
     @IBAction func femaleBtn(sender: DLRadioButton) {
-        gender = "female"
+        gender = "F"
     }
     
     @IBAction func updatePersonalProfileBtn(sender: UIButton) {
