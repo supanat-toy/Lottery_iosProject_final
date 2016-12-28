@@ -77,7 +77,6 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         alert.addAction(UIAlertAction(title: "ยกเลิก", style: .Default, handler: {(action) -> Void in
             
             self.dismissViewControllerAnimated(true, completion: nil)
-            self.theTable.reloadData()//test
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -107,7 +106,7 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         
         
         if(prize > 999){
-            cell.rewardAmount.textColor = UIColor.greenColor()
+            cell.rewardAmount.textColor = UIColor.init(red: 0/255, green: 153/255, blue: 0/255, alpha: 1.0)
         }else{
             cell.rewardAmount.textColor = UIColor.blackColor()
         }
