@@ -39,10 +39,10 @@ class Ws_User {
     }
     
     // GetUserProfile
-    static func GetUserProfile(email: String,completion:(responseData:mUser,errorMessage:NSError?)->Void)
+    static func GetUserProfile(user_id: Int,completion:(responseData:mUser,errorMessage:NSError?)->Void)
     {
         var userProfile:mUser!
-        let url = NSURL(string: "http://tskyonline.com:83/Ws_User/GetUserProfile?email=" + email)
+        let url = NSURL(string: "http://tskyonline.com:83/Ws_User/GetUserProfile?user_id=" + String(user_id))
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             do {

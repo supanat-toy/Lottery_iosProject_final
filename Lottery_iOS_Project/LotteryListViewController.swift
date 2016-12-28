@@ -27,9 +27,11 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "ลอตเตอรี่ของฉัน"
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "buttonTapped:")
         self.navigationItem.rightBarButtonItem = button
         getLottery()
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -43,6 +45,7 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             self.nextLottery = responseData.next_lottery_period_date
             
             self.theList = responseData.userGroupLottery
+            self.theTable.reloadData()
             
         })
     }
@@ -66,11 +69,10 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             print(textField.text)
             
             Ws_User.AddUserLottery(self.userID, numbers: textField.text!, period_lottery_date: self.nextLottery, completion: {(responseData, errorMessage) -> Void in
-                
+                self.getLottery()
             })
             
-            self.getLottery()
-            self.theTable.reloadData()
+            
             
         }))
         

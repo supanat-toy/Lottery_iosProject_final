@@ -1229,8 +1229,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            landmarkName = "LotteryListViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1300,7 +1300,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lottery_iOS_Project/Ws_User.swift"
@@ -1316,7 +1316,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lottery_iOS_Project/Ws_User.swift"
@@ -1332,7 +1332,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lottery_iOS_Project/Ws_User.swift"
@@ -1341,18 +1341,18 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
             endingLineNumber = "105"
-            landmarkName = "UpdateUserProfile(_:password:name:birthday:gender:completion:)"
+            landmarkName = "UpdateUserProfile(user_id:password:name:birthday:gender:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static Lottery_iOS_Project.Ws_User.UpdateUserProfile (Swift.Int, password : Swift.String, name : Swift.String, birthday : Swift.String, gender : Swift.String, completion : (responseData : Lottery_iOS_Project.mUser, errorMessage : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Lottery_iOS_Project"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/supanattechasothon/Documents/Programing%20Class/iOS/Swift/Source%20Tree/Lottery_ios_projectFinal_sourceTree/Lottery_iOS_Project/Ws_User.swift"
-                  timestampString = "504611325.462622"
+                  timestampString = "504611448.254287"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "105"
@@ -1360,14 +1360,14 @@
                   offsetFromSymbolStart = "1374">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static Lottery_iOS_Project.Ws_User.(UpdateUserProfile (Swift.Int, password : Swift.String, name : Swift.String, birthday : Swift.String, gender : Swift.String, completion : (responseData : Lottery_iOS_Project.mUser, errorMessage : Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #1)"
                   moduleName = "Lottery_iOS_Project"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/supanattechasothon/Documents/Programing%20Class/iOS/Swift/Source%20Tree/Lottery_ios_projectFinal_sourceTree/Lottery_iOS_Project/Ws_User.swift"
-                  timestampString = "504611325.465069"
+                  timestampString = "504611448.256342"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "102"
