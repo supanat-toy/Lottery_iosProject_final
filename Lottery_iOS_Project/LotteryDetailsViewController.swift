@@ -27,7 +27,6 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
     var datePicker_lotteryDate = UIDatePicker()
     var view_prize_4th_height:CGFloat!
     var isChangePickerDate: Bool = false
-    var isFirstPerioid_SaveLottery_CoreData = true
     //var scrollView_Lottery: UIScrollView!
     var current_datePicker: String = ""
     var subTitle_navigationBar: String = ""
@@ -91,9 +90,6 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
                 self.navigateBar_bottom.topItem?.title = responseData.lottery_period_date_thaiName     
                 self.refreshControl.endRefreshing()
                 self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "ข้อมูลล่าสุด")
-                if (self.isFirstPerioid_SaveLottery_CoreData){
-                    CoreData_Lottery.SaveLottery_CoreData(responseData)
-                }
             })
         }
     }

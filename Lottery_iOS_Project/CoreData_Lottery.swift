@@ -21,7 +21,7 @@ class CoreData_Lottery: UIViewController {
         
             if (responseData.count != 0){
                 do{
-                    let lotteryPeriod = try responseData[0]
+                    lotteryPeriod = try responseData[0]
                 }catch let error as NSError {
                     
                 }
@@ -216,7 +216,7 @@ class CoreData_Lottery: UIViewController {
         
         do {
             try managedContext.save()
-            //print("insert the new record sucessfully")
+            print("insert the new record sucessfully SaveLotteryPerioi()")
         } catch let error as NSError {
             print("Could not insert the new record. \(error)")
         }
@@ -240,7 +240,7 @@ class CoreData_Lottery: UIViewController {
         
         do {
             try managedContext.save()
-            print("insert the new record sucessfully")
+            print("insert the new record sucessfully SaveLotteryPrizeNumber()")
         } catch let error as NSError {
             print("Could not insert the new record. \(error)")
         }

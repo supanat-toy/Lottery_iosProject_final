@@ -18,9 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        if FIRApp.defaultApp() == nil {
+            FIRApp.configure()
+        }
+        FIRAnalytics.setScreenName("lottery_StoryBoard_id", screenClass: "LotteryIndexViewController")
+        //FIRApp.configure() // https://www.youtube.com/watch?v=LBw5tuTvKd4
+        //FIRAnalyticsConfiguration.sharedInstance().setAnalyticsCollectionEnabled(true)
         
-        FIRApp.configure() // https://www.youtube.com/watch?v=LBw5tuTvKd4
-  
         let notificationTypes : UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
         let notificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
         application.registerForRemoteNotifications()

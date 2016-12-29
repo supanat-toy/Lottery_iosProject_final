@@ -74,17 +74,8 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         self.setupPickerView_dateLottery()
         self.view.addSubview(functions.loadAds())
         
-        var ip:InternetProvider = InternetProvider()
-        if (InternetProvider.isInternetAvailable()){
-            refresh_wsGetLottery()
-        }
-        else {
-            CoreData_Lottery.GetLottery("") { (responseData, errorMessage) in
-                self.wsLotteryPeriod = responseData
-                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: responseData.last_update_dateTime)
-                self.subTitle_navigationBar = responseData.last_update_dateTime
-            }
-        }
+        refresh_wsGetLottery()
+       
         
         
         
@@ -107,7 +98,7 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         uiPickerView_dateLottery.selectRow(index, inComponent: 2, animated: true)
         
         
-        self.isFirstPerioid_SaveLottery_CoreData = false
+        
     }
     
     
@@ -116,26 +107,43 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         self.refreshControl.beginRefreshing()
         
         self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: "กำลังโหลดข้อมูลใหม่")
-        Ws_Lottery.GetLottery(current_datePicker) { (responseData, errorMessage) in
-            dispatch_async(dispatch_get_main_queue(), {
-                for view in self.scrollView_Lottery1.subviews {
-                    view.removeFromSuperview()
-                }
-                self.scrollView_Lottery1.addSubview(self.refreshControl)
+        
+        
+        var ip:InternetProvider = InternetProvider()
+        if (InternetProvider.isInternetAvailable()){
+            Ws_Lottery.GetLottery(current_datePicker) { (responseData, errorMessage) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    for view in self.scrollView_Lottery1.subviews {
+                        view.removeFromSuperview()
+                    }
+                    self.scrollView_Lottery1.addSubview(self.refreshControl)
+                    self.wsLotteryPeriod = responseData
+                    
+                    self.drawViewLottery(self.wsLotteryPeriod.lottery)
+                    self.navigateBar_bottom.topItem?.title = self.wsLotteryPeriod.lottery_period_date_thaiName
+                    self.refreshControl.endRefreshing()
+                    self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: "ข้อมูลล่าสุด")
+                    self.subTitle_navigationBar = "ข้อมูลล่าสุด"
+                    
+                    if (self.isFirstPerioid_SaveLottery_CoreData){
+                        CoreData_Lottery.SaveLottery_CoreData(responseData)
+                        self.isFirstPerioid_SaveLottery_CoreData = false
+                    }
+                })
+            }
+        }
+        else {
+            CoreData_Lottery.GetLottery("") { (responseData, errorMessage) in
                 self.wsLotteryPeriod = responseData
-                
                 self.drawViewLottery(self.wsLotteryPeriod.lottery)
                 self.navigateBar_bottom.topItem?.title = self.wsLotteryPeriod.lottery_period_date_thaiName
+                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: responseData.last_update_dateTime)
                 self.refreshControl.endRefreshing()
-                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: "ข้อมูลล่าสุด")
-                self.subTitle_navigationBar = "ข้อมูลล่าสุด"
-                
-                if (self.isFirstPerioid_SaveLottery_CoreData){
-                    CoreData_Lottery.SaveLottery_CoreData(responseData)
-                    self.isFirstPerioid_SaveLottery_CoreData = false
-                }
-            })
+                self.subTitle_navigationBar = responseData.last_update_dateTime
+            }
         }
+        
+        
     }
     
     
@@ -152,9 +160,11 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
             scrollView_Lottery1.frame = CGRect(x: 0, y: 110, width: WIDTH, height: scrollHeight)
             
             current_datePicker = String(selected_dayPicker) + "/" + String(selected_monthPicker) + "/" + String(selected_yearPickker)
+            self.isFirstPerioid_SaveLottery_CoreData = false
             refresh_wsGetLottery()
 
             uiPickerView_dateLottery.hidden = true
+            
         }
     }
     
@@ -271,7 +281,7 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryDetail_StoryBoard_id") as! LotteryDetailsViewController
         vc.wsLotteryPeriod = wsLotteryPeriod
         vc.current_datePicker = current_datePicker
-        vc.isFirstPerioid_SaveLottery_CoreData = isFirstPerioid_SaveLottery_CoreData
+        //vc.isFirstPerioid_SaveLottery_CoreData = isFirstPerioid_SaveLottery_CoreData
         vc.subTitle_navigationBar = subTitle_navigationBar
         //vc.faculty_details = foodList[sender.tag] as! NSDictionary
         self.navigationController?.pushViewController(vc, animated: true)
