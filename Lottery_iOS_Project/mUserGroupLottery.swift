@@ -22,5 +22,8 @@ class mUserGroupLottery {
             userLotteryList.append(mUserLotteryNumber(dictionary: dictionary))
         }
     }
-    
+    init(date:String, list: [mUserLotteryNumber]){
+        self.lottery_period_date = date
+        self.userLotteryList = list
+    }
 }
