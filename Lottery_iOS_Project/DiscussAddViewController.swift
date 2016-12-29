@@ -19,6 +19,7 @@ class DiscussAddViewController: UIViewController {
     let WIDTH = UIScreen.mainScreen().bounds.width
     let HEIGHT = UIScreen.mainScreen().bounds.height
     @IBOutlet weak var navigateBar_bottom: UINavigationBar!
+    let alertMessage = UIAlertView()
     var wsPeriod_lottery_date: String!
     var discuss_period_date_thaiName: String!
     
@@ -34,7 +35,7 @@ class DiscussAddViewController: UIViewController {
         var numbers: String = numberTextField.text!
         var message: String = messageTextField.text!
         
-        Ws_Discuss.AddNewDiscuss(1, period_lottery_date: wsPeriod_lottery_date, numbers: numbers, message: message) { (responseData, errorMessage) in
+        Ws_Discuss.AddNewDiscuss(getUserID(), period_lottery_date: wsPeriod_lottery_date, numbers: numbers, message: message) { (responseData, errorMessage) in
             dispatch_async(dispatch_get_main_queue(), {
                 
                 self.navigationController?.popViewControllerAnimated(true);
@@ -44,6 +45,16 @@ class DiscussAddViewController: UIViewController {
         }
     }
 
+    func getUserID() -> Int{
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var login_userID = defaults.objectForKey("login_user") as? Int
+        
+        if (login_userID != nil){
+            return login_userID!
+        }else {
+            return 0
+        }
+    }
     
     func keyboardWillShow(notification:NSNotification){
         

@@ -17,6 +17,7 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet var tableView_: UITableView!
     @IBOutlet weak var navigateBar_bottom: UINavigationBar!
     var textFieldKeyboard: UITextField = UITextField()
+    let alertMessage = UIAlertView()
     var discuss_id_tag: Int!
     var wsDiscuss_reply_list :[mDiscussReply] = []
     var wsDiscuss: mDiscuss!
@@ -52,7 +53,16 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
         textFieldKeyboard.becomeFirstResponder()
     }
     
-    
+    func getUserID() -> Int{
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var login_userID = defaults.objectForKey("login_user") as? Int
+        
+        if (login_userID != nil){
+            return login_userID!
+        }else {
+            return 0
+        }
+    }
     
     func refresh_wsGetDiscussReply(){
         self.refreshControl.endRefreshing()
@@ -134,6 +144,13 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func btn_pressLikeDiscuss_inReply(){
+        if (getUserID() == 0){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดลงชื่อเข้าระบบก่อน"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else {
         var isLike: Bool = false
         var currentNumLike: Int = 0
         isLike = wsDiscuss.isLike
@@ -145,7 +162,7 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
         
         if (isLike){ // go to unlike
             currentNumLike -= 1
-            Ws_Discuss.UnLikeDiscuss(0, discuss_id: wsDiscuss.discuss_id) { (responseData, errorMessage) in
+            Ws_Discuss.UnLikeDiscuss(getUserID(), discuss_id: wsDiscuss.discuss_id) { (responseData, errorMessage) in
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     
@@ -159,7 +176,7 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
         }
         else{ // go to like
             currentNumLike += 1
-            Ws_Discuss.LikeDiscuss(0, discuss_id: wsDiscuss.discuss_id) { (responseData, errorMessage) in
+            Ws_Discuss.LikeDiscuss(getUserID(), discuss_id: wsDiscuss.discuss_id) { (responseData, errorMessage) in
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     
@@ -171,6 +188,7 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
                 
             }
             
+        }
         }
     }
     
@@ -260,9 +278,16 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
     
     
     func submit_discussReply(){
+        if (getUserID() == 0){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดลงชื่อเข้าระบบก่อน"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else {
         var textReply = textFieldKeyboard.text
         
-        Ws_Discuss.AddCommentDiscuss(1, discuss_id: wsDiscuss.discuss_id, message: textReply!) { (responseData, errorMessage) in
+        Ws_Discuss.AddCommentDiscuss(getUserID(), discuss_id: wsDiscuss.discuss_id, message: textReply!) { (responseData, errorMessage) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 self.isScrollToLastCell = true
@@ -272,5 +297,6 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         print("submit_discussReply()")
+        }
     }
 }

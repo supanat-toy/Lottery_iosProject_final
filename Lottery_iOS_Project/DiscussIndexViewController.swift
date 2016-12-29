@@ -22,7 +22,8 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
     var isChangePickerDate: Bool = false
     
     var bannerAdView: ADBannerView = ADBannerView()
-
+    let alertMessage = UIAlertView()
+    
     var refreshControl: UIRefreshControl = UIRefreshControl()
     var datePicker_lotteryDate = UIDatePicker()
     let WIDTH = UIScreen.mainScreen().bounds.width
@@ -90,7 +91,7 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
         self.refreshControl.endRefreshing()
         self.refreshControl.beginRefreshing()
         self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "กำลังโหลดข้อมูลใหม่")
-        Ws_Discuss.GetDiscussList(current_datePicker, user_id: 1) { (responseData, errorMessage) in
+        Ws_Discuss.GetDiscussList(current_datePicker, user_id: getUserID()) { (responseData, errorMessage) in
             dispatch_async(dispatch_get_main_queue(), {
                 self.wsDiscussPeriod = responseData
                 self.wsDiscussList = responseData.discussList
@@ -140,15 +141,37 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
+    func getUserID() -> Int{
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var login_userID = defaults.objectForKey("login_user") as? Int
+        
+        if (login_userID != nil){
+            return login_userID!
+        }else {
+            return 0
+        }
+    }
+    
     @IBAction func btn_go_AddNewDiscuss_controller(sender: AnyObject) {
-        isAddNewDiscuss = true
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DiscussAdd_Storyboard_id") as! DiscussAddViewController
-        vc.wsPeriod_lottery_date = wsDiscussPeriod.discuss_period_date
-        vc.discuss_period_date_thaiName = wsDiscussPeriod.discuss_period_date_thaiName
-
+        
+        if (getUserID() == 0){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดลงชื่อเข้าระบบก่อน"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else {
+            isAddNewDiscuss = true
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("DiscussAdd_Storyboard_id") as! DiscussAddViewController
+            vc.wsPeriod_lottery_date = wsDiscussPeriod.discuss_period_date
+            vc.discuss_period_date_thaiName = wsDiscussPeriod.discuss_period_date_thaiName
+            
+            
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
         
-        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     override func didReceiveMemoryWarning() {
@@ -191,49 +214,58 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
     //Delegate methods for AdBannerView
     
     func btn_pressLikeDiscuss(sender: AnyObject){
-        var discussID_tag:Int = (sender.tag)
-        var isLike: Bool = false
-        var currentNumLike: Int = 0
-        var index_arr: Int = 0
-        for var i = 0; i < wsDiscussList.count; i += 1 {
-            if (wsDiscussList[i].discuss_id == discussID_tag){
-                isLike = wsDiscussList[i].isLike
-                currentNumLike = wsDiscussList[i].number_like
-                wsDiscussList[i].isLike = (isLike ? false : true) // update value
-                index_arr = i
-                break
+        if (getUserID() == 0){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดลงชื่อเข้าระบบก่อน"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else {
+            var discussID_tag:Int = (sender.tag)
+            var isLike: Bool = false
+            var currentNumLike: Int = 0
+            var index_arr: Int = 0
+            for var i = 0; i < wsDiscussList.count; i += 1 {
+                if (wsDiscussList[i].discuss_id == discussID_tag){
+                    isLike = wsDiscussList[i].isLike
+                    currentNumLike = wsDiscussList[i].number_like
+                    wsDiscussList[i].isLike = (isLike ? false : true) // update value
+                    index_arr = i
+                    break
+                }
+            }
+            
+            if (isLike){ // go to unlike
+                currentNumLike -= 1
+                wsDiscussList[index_arr].number_like = currentNumLike
+                Ws_Discuss.UnLikeDiscuss(getUserID(), discuss_id: discussID_tag) { (responseData, errorMessage) in
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        //tableView_.cellForRowAtIndexPath(0).setImage
+                        sender.setImage(UIImage(named: "icon_unlike")!, forState: .Normal)
+                        sender.setTitleColor(UIColor(red: 120/255, green: 127/255, blue: 143/255, alpha: 1.0), forState: .Normal)
+                        sender.setTitle(String(currentNumLike), forState: .Normal)
+                    })
+                    
+                }
+            }
+            else{ // go to like
+                currentNumLike += 1
+                wsDiscussList[index_arr].number_like = currentNumLike
+                Ws_Discuss.LikeDiscuss(getUserID(), discuss_id: discussID_tag) { (responseData, errorMessage) in
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        sender.setImage(UIImage(named: "icon_like")!, forState: .Normal)
+                        sender.setTitleColor(UIColor(red: 238/255, green: 166/255, blue: 52/255, alpha: 1.0), forState: .Normal)
+                        sender.setTitle(String(currentNumLike), forState: .Normal)
+                    })
+                    
+                }
+                
             }
         }
         
-        if (isLike){ // go to unlike
-            currentNumLike -= 1
-            wsDiscussList[index_arr].number_like = currentNumLike
-            Ws_Discuss.UnLikeDiscuss(0, discuss_id: discussID_tag) { (responseData, errorMessage) in
-
-                dispatch_async(dispatch_get_main_queue(), {
-                    //tableView_.cellForRowAtIndexPath(0).setImage
-                    sender.setImage(UIImage(named: "icon_unlike")!, forState: .Normal)
-                    sender.setTitleColor(UIColor(red: 120/255, green: 127/255, blue: 143/255, alpha: 1.0), forState: .Normal)
-                    sender.setTitle(String(currentNumLike), forState: .Normal)
-                })
-                
-            }
-        }
-        else{ // go to like
-            currentNumLike += 1
-            wsDiscussList[index_arr].number_like = currentNumLike
-            Ws_Discuss.LikeDiscuss(0, discuss_id: discussID_tag) { (responseData, errorMessage) in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    sender.setImage(UIImage(named: "icon_like")!, forState: .Normal)
-                    sender.setTitleColor(UIColor(red: 238/255, green: 166/255, blue: 52/255, alpha: 1.0), forState: .Normal)
-                    sender.setTitle(String(currentNumLike), forState: .Normal)
-                })
-                
-            }
-            
-        }
         
     }
     
