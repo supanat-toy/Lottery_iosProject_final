@@ -81,7 +81,7 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         else {
             CoreData_Lottery.GetLottery("") { (responseData, errorMessage) in
                 self.wsLotteryPeriod = responseData
-                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: responseData.last_update_dateTime)
+                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: responseData.last_update_dateTime)
                 self.subTitle_navigationBar = responseData.last_update_dateTime
             }
         }
@@ -115,7 +115,7 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         self.refreshControl.endRefreshing()
         self.refreshControl.beginRefreshing()
         
-        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "กำลังโหลดข้อมูลใหม่")
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: "กำลังโหลดข้อมูลใหม่")
         Ws_Lottery.GetLottery(current_datePicker) { (responseData, errorMessage) in
             dispatch_async(dispatch_get_main_queue(), {
                 for view in self.scrollView_Lottery1.subviews {
@@ -127,11 +127,12 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
                 self.drawViewLottery(self.wsLotteryPeriod.lottery)
                 self.navigateBar_bottom.topItem?.title = self.wsLotteryPeriod.lottery_period_date_thaiName
                 self.refreshControl.endRefreshing()
-                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: "ข้อมูลล่าสุด")
+                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: "ข้อมูลล่าสุด")
                 self.subTitle_navigationBar = "ข้อมูลล่าสุด"
                 
                 if (self.isFirstPerioid_SaveLottery_CoreData){
                     CoreData_Lottery.SaveLottery_CoreData(responseData)
+                    self.isFirstPerioid_SaveLottery_CoreData = false
                 }
             })
         }

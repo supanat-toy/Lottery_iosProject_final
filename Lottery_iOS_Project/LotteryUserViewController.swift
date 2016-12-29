@@ -248,6 +248,9 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             }
             if(indexPath.row == 2){
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(nil, forKey: "login_user")
+                
                 self.navigationController?.popViewControllerAnimated(true)
             }
             break

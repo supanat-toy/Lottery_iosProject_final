@@ -240,7 +240,7 @@ class CoreData_Lottery: UIViewController {
         
         do {
             try managedContext.save()
-            //print("insert the new record sucessfully")
+            print("insert the new record sucessfully")
         } catch let error as NSError {
             print("Could not insert the new record. \(error)")
         }
