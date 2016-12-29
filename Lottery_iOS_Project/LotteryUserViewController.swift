@@ -251,7 +251,9 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(nil, forKey: "login_user")
                 
-                self.navigationController?.popViewControllerAnimated(true)
+                //self.navigationController?.popViewControllerAnimated(true)
+                let vs = self.storyboard?.instantiateViewControllerWithIdentifier("loginView") as! LoginViewController
+                self.navigationController?.pushViewController(vs, animated: true)
             }
             break
             
