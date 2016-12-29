@@ -24,7 +24,8 @@ class FunctionsProvider:UIViewController, GADBannerViewDelegate {
         var bannerAdView: GADBannerView
         bannerAdView = GADBannerView(frame: CGRect(x: (screenWidth / 2) - CGFloat(size / 2), y: screenBounds.height-100, width: 320, height: 50))
         bannerAdView.delegate = self
-        bannerAdView.adUnitID = "ca-app-pub-2249744611088216/6482569886"
+        bannerAdView.adUnitID = "ca-app-pub-2249744611088216/6555328283"
+        // ca-app-pub-2249744611088216/6482569886
         bannerAdView.rootViewController = self
         bannerAdView.loadRequest(request)
         //self.canDisplayBannerAds = true
