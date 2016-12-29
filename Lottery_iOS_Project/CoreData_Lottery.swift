@@ -245,4 +245,55 @@ class CoreData_Lottery: UIViewController {
             print("Could not insert the new record. \(error)")
         }
     }
+    
+    //User lottery
+    
+    
+    //save the date of the next session that the lottery will commence
+    static func SaveNextLotteryDate(nextDate: String){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        
+        let entity = NSEntityDescription.entityForName("UserLotteryNext", inManagedObjectContext: managedContext)
+        let newLotteryNext = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        newLotteryNext.setValue(nextDate, forKey: "next_lottery_date")
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("Could not insert new lottery date. \(error)")
+        }
+    }
+    
+    static func SaveLottery(sender: [mUserGroupLottery], userid: Int){
+        for i in sender{
+            
+            for j in i.userLotteryList{
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let managedContext = appDelegate.managedObjectContext
+                let entity = NSEntityDescription.entityForName("UserLottery", inManagedObjectContext: managedContext)
+                let newLottery = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+                
+                
+                newLottery.setValue(userid, forKey: "user_id")
+                newLottery.setValue(j.numbers, forKey: "lottery_number")
+                newLottery.setValue(j.prize_baht, forKey: "prize_baht")
+                newLottery.setValue(j.userLottery_id, forKey: "user_lottery_id")
+                newLottery.setValue(j.period_lottery_date, forKey: "lottery_date")
+                newLottery.setValue(j.status_result, forKey: "status_result")
+                newLottery.setValue(j.create_datetime, forKey: "create_datetime")
+                
+                do{
+                    try managedContext.save()
+                    print("Insert user lottery successfully")
+                }catch let error as NSError{
+                    print("Could not insert user lottery. \(error)")
+                }
+            }
+        }
+    }
+    
+    
 }

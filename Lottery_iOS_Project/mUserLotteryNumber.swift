@@ -26,4 +26,13 @@ init(dictionary: AnyObject) {
     self.status_result = dictionary["status_result"] as? String
     self.create_datetime = dictionary["create_datetime"] as? String
 }
+
+    init(userLotteryId: Int, userId: Int, number: String, prize: Int, date: String, result: String){
+        self.userLottery_id = userLotteryId
+        self.user_id = userId
+        self.numbers = number
+        self.prize_baht = prize
+        self.period_lottery_date = date
+        self.status_result = result
+    }
 }

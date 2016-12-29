@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class LotteryListCell: UITableViewCell{
     @IBOutlet weak var rewardType: UILabel!
@@ -39,15 +40,82 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func getLottery(){
-        Ws_User.GetUserLottery(userID, completion: {(responseData, errorMessage) -> Void in
+        if(InternetProvider.isInternetAvailable() == true){
+            Ws_User.GetUserLottery(userID, completion: {(responseData, errorMessage) -> Void in
         
+                self.nextLottery = responseData.next_lottery_period_date
+                self.theList = responseData.userGroupLottery
         
-            self.nextLottery = responseData.next_lottery_period_date
+                CoreData_Lottery.ClearLottery_CoreData("UserLotteryNext")
+                CoreData_Lottery.SaveNextLotteryDate(self.nextLottery)
+                
+                CoreData_Lottery.ClearLottery_CoreData("UserLottery")
+                CoreData_Lottery.SaveLottery(self.theList, userid: self.userID)
+
+                self.theTable.reloadData()
             
-            self.theList = responseData.userGroupLottery
-            self.theTable.reloadData()
+            })
+        }
+        
+        else{
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
             
-        })
+            let request = NSFetchRequest(entityName: "UserLottery")
+            request.returnsObjectsAsFaults = false
+            
+            var lotteryDate = [String]()
+            var list = [mUserLotteryNumber]()
+            
+            do{
+                let results = try managedContext.executeFetchRequest(request)
+                if (results.count > 0 ){
+                    
+                    for date in results as! [NSManagedObject]{
+                        let stringDate = date.valueForKey("lottery_date") as? String
+                        if(lotteryDate.count < 1){
+                            lotteryDate.append(stringDate!)
+                        }
+                        else{
+                            for i in 0..<lotteryDate.count{
+                                if lotteryDate[i] != stringDate && (i+1)==lotteryDate.count{
+                                    lotteryDate.append(stringDate!)
+                                }
+                            }
+                        }
+                    }
+                    
+                    for result in results as! [NSManagedObject]{
+                        let id = result.valueForKey("user_id") as? Int
+                        if ( id == self.userID){
+                            
+                            let prize = result.valueForKey("prize_baht") as? Int
+                            let number = result.valueForKey("lottery_number") as? String
+                            let lotteryId = result.valueForKey("user_lottery_id") as? Int
+                            let date = result.valueForKey("lottery_date") as? String
+                            let statusResult = result.valueForKey("status_result") as? String
+                            
+                            let lotteryNumber = mUserLotteryNumber.init(userLotteryId: lotteryId!, userId: id!, number: number!, prize: prize!, date: date!, result: statusResult!)
+                            list.append(lotteryNumber)
+                        }
+                    }
+                    
+                    for i in lotteryDate{
+                        var groupLottery = [mUserLotteryNumber]()
+                        for j in list{
+                            if (i == j.period_lottery_date){
+                                groupLottery.append(j)
+                            }
+                        }
+                        let mUserGroup = mUserGroupLottery.init(date: i, list: groupLottery)
+                        self.theList.append(mUserGroup)
+                    }
+                }
+            }
+            catch let error as NSError{
+                print("Failed to retrieve data \(error)")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,9 +139,6 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             Ws_User.AddUserLottery(self.userID, numbers: textField.text!, period_lottery_date: self.nextLottery, completion: {(responseData, errorMessage) -> Void in
                 self.getLottery()
             })
-            
-            
-            
         }))
         
         alert.addAction(UIAlertAction(title: "ยกเลิก", style: .Default, handler: {(action) -> Void in
@@ -144,5 +209,8 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             cell.rewardType.text = "  "
         }
         return cell
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
