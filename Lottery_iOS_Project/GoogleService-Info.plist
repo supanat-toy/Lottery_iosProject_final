@@ -36,5 +36,7 @@
 	<string>1:922429713580:ios:81c7276797a62411</string>
 	<key>DATABASE_URL</key>
 	<string>https://lottery-ios-final.firebaseio.com</string>
+	<key></key>
+	<false/>
 </dict>
 </plist>

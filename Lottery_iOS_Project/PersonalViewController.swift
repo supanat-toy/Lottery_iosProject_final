@@ -112,6 +112,8 @@ class PersonalViewController: UIViewController {
         
         Ws_User.UpdateUserProfile(ID, password: password, name: changeUsername, birthday: changeBirthday, gender: changeGender, completion: {(responseData, errorMessage) -> Void in
         
+            
+            
             let vs = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
 
             vs.userID = responseData.user_id

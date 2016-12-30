@@ -30,10 +30,11 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "ลอตเตอรี่ของฉัน"
+      
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "buttonTapped:")
         self.navigationItem.rightBarButtonItem = button
         
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่ของฉัน", subtitle: "ข้อมูลล่าสุด")
         
         refreshControl.addTarget(self, action: "getLottery", forControlEvents: .ValueChanged)
         theTable.addSubview(refreshControl)
@@ -51,21 +52,27 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         self.refreshControl.endRefreshing()
         self.refreshControl.beginRefreshing()
         theList = [mUserGroupLottery]()
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่ของฉัน", subtitle: "กำลังโหลดข้อมูลใหม่")
         
         if(InternetProvider.isInternetAvailable() == true){
             Ws_User.GetUserLottery(userID, completion: {(responseData, errorMessage) -> Void in
         
-                self.nextLottery = responseData.next_lottery_period_date
-                self.theList = responseData.userGroupLottery
-        
-                CoreData_Lottery.ClearLottery_CoreData("UserLotteryNext")
-                CoreData_Lottery.ClearLottery_CoreData("UserLottery")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.nextLottery = responseData.next_lottery_period_date
+                    self.theList = responseData.userGroupLottery
+                    
+                    CoreData_Lottery.ClearLottery_CoreData("UserLotteryNext")
+                    CoreData_Lottery.ClearLottery_CoreData("UserLottery")
+                    
+                    CoreData_Lottery.SaveNextLotteryDate(self.nextLottery)
+                    CoreData_Lottery.SaveLottery(self.theList, userid: self.userID)
+                    
+                    self.refreshControl.endRefreshing()
+                    self.theTable.reloadData()
+                    self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่ของฉัน", subtitle: "ข้อมูลล่าสุด")
+                })
                 
-                CoreData_Lottery.SaveNextLotteryDate(self.nextLottery)
-                CoreData_Lottery.SaveLottery(self.theList, userid: self.userID)
-
-                self.refreshControl.endRefreshing()
-                self.theTable.reloadData()
+                
                 
             })
         }
@@ -125,6 +132,7 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                     self.refreshControl.endRefreshing()
                     self.theTable.reloadData()
+                    self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่ของฉัน", subtitle: "โหลดข้อมูลใหม่ผิดพลาด")
                 }
             }
             catch let error as NSError{
@@ -162,7 +170,12 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             print(textField.text)
             
             Ws_User.AddUserLottery(self.userID, numbers: textField.text!, period_lottery_date: self.nextLottery, completion: {(responseData, errorMessage) -> Void in
-                self.getLottery()
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.getLottery()
+                })
+                
+                
             })
             
             
@@ -203,9 +216,17 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         if(prize > 999){
             cell.rewardAmount.textColor = UIColor.init(red: 0/255, green: 153/255, blue: 0/255, alpha: 1.0)
         }else{
-            cell.rewardAmount.textColor = UIColor.blackColor()
+            cell.rewardAmount.textColor = UIColor.init(red: 176/255, green: 176/255, blue: 176/255, alpha: 1.0)
         }
-        cell.rewardAmount.text = String(self.theList[indexPath.section].userLotteryList[indexPath.row].prize_baht)
+        
+        if(self.theList[indexPath.section].userLotteryList[indexPath.row].status_result == "0"){
+            cell.rewardAmount.text = "ผลยังไม่ออก"
+        }
+        else {
+            cell.rewardAmount.text = String(self.theList[indexPath.section].userLotteryList[indexPath.row].prize_baht)
+        }
+        
+        
         
         switch(prize){
         

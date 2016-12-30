@@ -11,5 +11,4 @@ target 'Lottery_iOS_Project' do
 pod ‘Firebase’
 pod ‘Firebase/Messaging’
 
-
 end

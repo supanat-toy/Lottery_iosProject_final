@@ -52,6 +52,10 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         selected_monthPicker = Int(dateArr[1])!
         selected_yearPickker = Int(dateArr[2])!
         
+        if (selected_yearPickker < 2500){
+            selected_yearPickker += 543
+        }
+        
         self.setupPickerView_dateLottery()
         
     }

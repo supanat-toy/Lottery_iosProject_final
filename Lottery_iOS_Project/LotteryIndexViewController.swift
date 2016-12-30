@@ -67,13 +67,19 @@ class LotteryIndexViewController: UIViewController, ADBannerViewDelegate, UIPick
         let dateArr = dateNow.characters.split{$0 == "/"}.map(String.init)
         selected_dayPicker = Int(dateArr[0]) > 15 ? 16 : 1
         selected_monthPicker = Int(dateArr[1])!
-        selected_yearPickker = Int(dateArr[2])! + 543
+        selected_yearPickker = Int(dateArr[2])!
+        
+        if (selected_yearPickker < 2500){
+            selected_yearPickker += 543
+        }
+        
         current_datePicker = String(selected_dayPicker) + "/" + String(selected_monthPicker) + "/" + String(selected_yearPickker)
         
         
-        self.setupPickerView_dateLottery()
-        self.view.addSubview(functions.loadAds())
         
+        
+        self.view.addSubview(functions.loadAds())
+        self.setupPickerView_dateLottery()
         refresh_wsGetLottery()
        
         
