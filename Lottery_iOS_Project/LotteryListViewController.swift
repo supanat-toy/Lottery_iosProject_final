@@ -23,6 +23,8 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     var theList = [mUserGroupLottery]()
     var nextLottery: String!
     
+    let alertMessage = UIAlertView()
+    var refreshControl: UIRefreshControl = UIRefreshControl()
     @IBOutlet weak var theTable: UITableView!
     
     override func viewDidLoad() {
@@ -31,6 +33,12 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         self.title = "ลอตเตอรี่ของฉัน"
         let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "buttonTapped:")
         self.navigationItem.rightBarButtonItem = button
+        
+        
+        refreshControl.addTarget(self, action: "getLottery", forControlEvents: .ValueChanged)
+        theTable.addSubview(refreshControl)
+        refreshControl.beginRefreshing()
+        
         getLottery()
 
     }
@@ -40,6 +48,10 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func getLottery(){
+        self.refreshControl.endRefreshing()
+        self.refreshControl.beginRefreshing()
+        theList = [mUserGroupLottery]()
+        
         if(InternetProvider.isInternetAvailable() == true){
             Ws_User.GetUserLottery(userID, completion: {(responseData, errorMessage) -> Void in
         
@@ -47,13 +59,14 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
                 self.theList = responseData.userGroupLottery
         
                 CoreData_Lottery.ClearLottery_CoreData("UserLotteryNext")
-                CoreData_Lottery.SaveNextLotteryDate(self.nextLottery)
-                
                 CoreData_Lottery.ClearLottery_CoreData("UserLottery")
+                
+                CoreData_Lottery.SaveNextLotteryDate(self.nextLottery)
                 CoreData_Lottery.SaveLottery(self.theList, userid: self.userID)
 
+                self.refreshControl.endRefreshing()
                 self.theTable.reloadData()
-            
+                
             })
         }
         
@@ -110,6 +123,8 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
                         let mUserGroup = mUserGroupLottery.init(date: i, list: groupLottery)
                         self.theList.append(mUserGroup)
                     }
+                    self.refreshControl.endRefreshing()
+                    self.theTable.reloadData()
                 }
             }
             catch let error as NSError{
@@ -125,6 +140,16 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func buttonTapped(sender: UIBarButtonItem){
         
+        if(!InternetProvider.isInternetAvailable()){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดเชื่อมต่ออินเตอรเน็ต"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else{
+            
+        
+        
         let alert = UIAlertController(title: "ใส่เลขลอตเตอรี่", message: self.nextLottery, preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addTextFieldWithConfigurationHandler{
@@ -139,6 +164,8 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
             Ws_User.AddUserLottery(self.userID, numbers: textField.text!, period_lottery_date: self.nextLottery, completion: {(responseData, errorMessage) -> Void in
                 self.getLottery()
             })
+            
+            
         }))
         
         alert.addAction(UIAlertAction(title: "ยกเลิก", style: .Default, handler: {(action) -> Void in
@@ -147,6 +174,7 @@ class LotteryListViewController: UIViewController, UITableViewDataSource, UITabl
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
+            }
         
     }
  

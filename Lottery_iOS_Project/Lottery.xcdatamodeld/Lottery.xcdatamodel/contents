@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1108" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="LotteryPeriod" syncable="YES">
         <attribute name="file_url_pdf" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="last_updated_dateTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,10 +27,22 @@
     <entity name="UserLotteryNext" syncable="YES">
         <attribute name="next_lottery_date" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="UserProfile" syncable="YES">
+        <attribute name="birthday" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAccepted_checking_notification" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isAccepted_lottery_notification" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="LotteryPeriod" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="LotteryPrizeNumber" positionX="-54" positionY="-9" width="128" height="135"/>
         <element name="UserLottery" positionX="-54" positionY="36" width="128" height="150"/>
         <element name="UserLotteryNext" positionX="-45" positionY="81" width="128" height="60"/>
+        <element name="UserProfile" positionX="-54" positionY="63" width="128" height="180"/>
     </elements>
 </model>

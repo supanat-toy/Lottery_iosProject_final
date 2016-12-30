@@ -131,6 +131,10 @@ class DiscussDetailsViewController: UIViewController, UITableViewDelegate, UITab
                 cell.DiscussLike_Button.setImage(UIImage(named: "icon_like")!, forState: .Normal)
                 cell.DiscussLike_Button.setTitleColor(UIColor(red: 238/255, green: 166/255, blue: 52/255, alpha: 1.0), forState: .Normal)
             }
+            else {
+                cell.DiscussLike_Button.setImage(UIImage(named: "icon_unlike")!, forState: .Normal)
+                cell.DiscussLike_Button.setTitleColor(UIColor(red: 120/255, green: 127/255, blue: 143/255, alpha: 1.0), forState: .Normal)
+            }
             
             return cell
         }else{

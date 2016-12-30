@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class mUser {
     
@@ -19,6 +20,32 @@ class mUser {
     var message : String!
     var isAccepted_checking_notification : Bool!
     var isAccepted_lottery_notification : Bool!
+    
+    
+    init(object: NSManagedObject) {
+        
+        self.user_id = object.valueForKey("user_id") as? Int
+        self.email = object.valueForKey("email") as? String
+        self.password = object.valueForKey("password") as? String
+        self.name = object.valueForKey("name") as? String
+        self.birthday = object.valueForKey("birthday") as? String
+        self.gender = object.valueForKey("gender") as? String
+        self.message = object.valueForKey("message") as? String
+        
+        var isAccepted_checking_notification:Int = (object.valueForKey("isAccepted_checking_notification") as? Int)!
+        if(isAccepted_checking_notification == 1){
+            self.isAccepted_checking_notification  = true
+        }else {
+            self.isAccepted_checking_notification  = false
+        }
+        
+        var isAccepted_lottery_notification:Int = (object.valueForKey("isAccepted_lottery_notification") as? Int)!
+        if(isAccepted_lottery_notification == 1){
+            self.isAccepted_lottery_notification  = true
+        }else {
+            self.isAccepted_lottery_notification  = false
+        }
+    }
     
     init(dictionary: AnyObject) {
         self.user_id = dictionary["user_id"] as? Int

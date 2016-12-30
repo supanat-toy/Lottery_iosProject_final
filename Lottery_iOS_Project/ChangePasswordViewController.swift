@@ -19,7 +19,7 @@ class ChangePasswordViewController: UIViewController {
     var email:String!
     var checkingNotification:Bool!
     var lotteryNotification:Bool!
-    
+    let alertMessage = UIAlertView()
     @IBOutlet weak var currentPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmNewPasswordField: UITextField!
@@ -44,6 +44,14 @@ class ChangePasswordViewController: UIViewController {
         let confirmPassword = confirmNewPasswordField.text
         let oldPassword = currentPasswordField.text
         
+        if(!InternetProvider.isInternetAvailable()){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดเชื่อมต่ออินเตอรเน็ต"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else{
+        
         if(changePassword == confirmPassword && changePassword != oldPassword && changePassword != ""){
         
             Ws_User.UpdateUserProfile(ID, password: changePassword!, name: name, birthday: birthday, gender: gender, completion: {(responseData, errorMessage) -> Void in
@@ -64,7 +72,8 @@ class ChangePasswordViewController: UIViewController {
                     self.navigationController?.pushViewController(vs, animated: true)
                 })
             })
-
+            }
+        }
         
 //        
 //        Ws_User.UpdateUserProfile(email, password: password, name: changeUsername!, birthday: changeBirthday!, gender: changeGender, completion: {(responseData, errorMessage) -> Void in
@@ -85,6 +94,6 @@ class ChangePasswordViewController: UIViewController {
 //                self.navigationController?.pushViewController(vs, animated: true)
 //            })
 //        })
-        }
+        
     }
 }

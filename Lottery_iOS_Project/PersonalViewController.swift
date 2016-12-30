@@ -19,7 +19,7 @@ class PersonalViewController: UIViewController {
     var password:String!
     var checkingNotification:Bool!
     var lotteryNotification:Bool!
-    
+    let alertMessage = UIAlertView()
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var birthdayField: UITextField!
 
@@ -96,6 +96,13 @@ class PersonalViewController: UIViewController {
         let changeBirthday = birthdayField.text!
         let changeGender = gender
         
+        if(!InternetProvider.isInternetAvailable()){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดเชื่อมต่ออินเตอรเน็ต"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else{
         
         print(ID)
         print(password)
@@ -121,6 +128,7 @@ class PersonalViewController: UIViewController {
                 self.navigationController?.pushViewController(vs, animated: true)
             })
         })
+        }
 //        Ws_User.UpdateUserProfile(9, password: "1234", name: "Orange", birthday: "12/12/2533", gender: "M", completion: {(responseData, errorMessage) -> Void in
 //        })
     }

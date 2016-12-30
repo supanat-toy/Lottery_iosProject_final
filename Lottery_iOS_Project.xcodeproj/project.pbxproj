@@ -16,6 +16,7 @@
 		1632AF3C1DC4A31C00DF20DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3A1DC4A31C00DF20DD /* Main.storyboard */; };
 		1632AF3E1DC4A31C00DF20DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3D1DC4A31C00DF20DD /* Assets.xcassets */; };
 		1632AF411DC4A31C00DF20DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1632AF3F1DC4A31C00DF20DD /* LaunchScreen.storyboard */; };
+		1682ED8B1E161C9100EF4BEB /* CoreData_UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1682ED8A1E161C9100EF4BEB /* CoreData_UserProfile.swift */; };
 		16873E0C1E02EB950074EDDA /* DrawNavigationTitleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16873E0B1E02EB950074EDDA /* DrawNavigationTitleProvider.swift */; };
 		16873E131E03142E0074EDDA /* AddDevice_Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16873E121E03142E0074EDDA /* AddDevice_Notification.swift */; };
 		16873E151E03143C0074EDDA /* GetPush_Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16873E141E03143C0074EDDA /* GetPush_Notification.swift */; };
@@ -70,6 +71,7 @@
 		1632AF401DC4A31C00DF20DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1632AF421DC4A31C00DF20DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16703F581E14318800C3D942 /* Lottery_iOS_Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lottery_iOS_Project.entitlements; sourceTree = "<group>"; };
+		1682ED8A1E161C9100EF4BEB /* CoreData_UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData_UserProfile.swift; sourceTree = "<group>"; };
 		16873E0B1E02EB950074EDDA /* DrawNavigationTitleProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawNavigationTitleProvider.swift; sourceTree = "<group>"; };
 		16873E121E03142E0074EDDA /* AddDevice_Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDevice_Notification.swift; sourceTree = "<group>"; };
 		16873E141E03143C0074EDDA /* GetPush_Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPush_Notification.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				162CCFF91E012E2900936B5D /* CoreData_Lottery.swift */,
+				1682ED8A1E161C9100EF4BEB /* CoreData_UserProfile.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				16FA36FA1DFC3CEB00F8E599 /* FunctionsProvider.swift in Sources */,
 				16E9566E1DEF385B003D8BDD /* Ws_User.swift in Sources */,
 				169FF9231DFE3729006757B2 /* LoginViewController.swift in Sources */,
+				1682ED8B1E161C9100EF4BEB /* CoreData_UserProfile.swift in Sources */,
 				169FF92B1DFE3729006757B2 /* LotteryListViewController.swift in Sources */,
 				16E956511DEF37ED003D8BDD /* DiscussDetailsViewController.swift in Sources */,
 				169FF9251DFE3729006757B2 /* RegistrationViewController.swift in Sources */,

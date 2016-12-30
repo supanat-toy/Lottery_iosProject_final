@@ -15,13 +15,13 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+   
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if FIRApp.defaultApp() == nil {
-            FIRApp.configure()
+            //FIRApp.configure()
         }
-        FIRAnalytics.setScreenName("lottery_StoryBoard_id", screenClass: "LotteryIndexViewController")
+        //FIRAnalytics.setScreenName("lottery_StoryBoard_id", screenClass: "LotteryIndexViewController")
         //FIRApp.configure() // https://www.youtube.com/watch?v=LBw5tuTvKd4
         //FIRAnalyticsConfiguration.sharedInstance().setAnalyticsCollectionEnabled(true)
         

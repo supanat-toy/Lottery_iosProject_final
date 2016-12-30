@@ -46,7 +46,7 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
     
     var memberLabelList : [String] = []
     let switchLabelList = ["แจ้งตรวจสอบ", "แจ้งลอตเตอรี่"]
-    let otherLabelList = ["ให้ดาว","ติดต่อ","ออกจากระบบ"]
+    let otherLabelList = ["ให้ดาว","ติดต่อ","ออกจากระบบ"] //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -233,7 +233,7 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
             
         case 2:
             if(indexPath.row == 0){
-                let alert = UIAlertController(title: "UNDER CONSTRUCTION", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "During Development", message: "", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
 
@@ -249,11 +249,14 @@ class LotteryUserViewController: UIViewController, UITableViewDataSource, UITabl
             }
             if(indexPath.row == 2){
                 let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject(nil, forKey: "login_user")
+                //defaults.setObject(0, forKey: "login_user")
+                defaults.removeObjectForKey("login_user")
+                defaults.synchronize()
                 
                 //self.navigationController?.popViewControllerAnimated(true)
-                let vs = self.storyboard?.instantiateViewControllerWithIdentifier("loginView") as! LoginViewController
-                self.navigationController?.pushViewController(vs, animated: true)
+//                let vs = self.storyboard?.instantiateViewControllerWithIdentifier("loginView") as! LoginViewController
+//                self.navigationController?.pushViewController(vs, animated: true)
+                self.navigationController?.popToRootViewControllerAnimated(true)
             }
             break
             

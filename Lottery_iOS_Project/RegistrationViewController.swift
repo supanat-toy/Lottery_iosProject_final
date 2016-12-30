@@ -33,6 +33,7 @@ class RegistrationViewController: UIViewController {
     
     var userGender:String = ""
     var datePickerRegistration:UIDatePicker!
+    let alertMessage = UIAlertView()
     
     let WIDTH = UIScreen.mainScreen().bounds.width
     let HEIGHT = UIScreen.mainScreen().bounds.height
@@ -90,6 +91,15 @@ class RegistrationViewController: UIViewController {
         sender.inputAccessoryView = toolbar
     }
     @IBAction func registerBtn(sender: UIButton) {
+        
+        if(!InternetProvider.isInternetAvailable()){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดเชื่อมต่ออินเตอรเน็ต"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else{
+        
         if(emailField.text == "" || passwordField.text == ""){
             print("peanut")
             let alert = UIAlertController(title: "กรุณาใส่อีเมลและรหัสผ่าน", message: "", preferredStyle: UIAlertControllerStyle.Alert)
@@ -130,6 +140,9 @@ class RegistrationViewController: UIViewController {
                 let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
                 let globalProperty:mGlobalproperty = responseData
                 if(globalProperty.resultResponse.result == true){
+                    
+                    CoreData_UserProfile.SaveUserProfile(globalProperty.userProfile)
+                    
                     vc.userID = globalProperty.userProfile.user_id
                     vc.userEmail = globalProperty.userProfile.email
                     vc.userName = globalProperty.userProfile.name
@@ -143,7 +156,10 @@ class RegistrationViewController: UIViewController {
 //                        let alert = UIAlertController(title: "สมัครล้มเหลว", message: "ลองใหม่อีกครั้ง", preferredStyle: UIAlertControllerStyle.Alert)
 //                        alert.addAction(UIAlertAction(title: "ตกลง", style: .Default, handler: nil))
 //                        self.presentViewController(alert, animated: true, completion: nil)
-                        
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        //var favoriteList = defaults.objectForKey("login_user") as? Int
+                        var login_userID = globalProperty.userProfile.user_id
+                        defaults.setObject(login_userID, forKey: "login_user")
                         self.navigationController?.pushViewController(vc, animated: true)
                     })
                 }
@@ -153,6 +169,7 @@ class RegistrationViewController: UIViewController {
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
             })
+            }
         }
     }
 }

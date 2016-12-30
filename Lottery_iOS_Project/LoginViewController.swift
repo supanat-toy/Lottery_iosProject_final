@@ -21,31 +21,57 @@ class LoginViewController: UIViewController {
         passwordField.text = ""
         // Do any additional setup after loading the view.
         
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
         
         
     }
 
     override func viewWillAppear(animated: Bool) {
         if(checkIsLogined()){
-            Ws_User.GetUserProfile(user_id, completion: { (responseData, errorMessage) in
+            
+            CoreData_UserProfile.GetUserProfile({ (responseData, errorMessage) in
+                
                 let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
-                let userProfile: mUser = responseData
-                
-                vc.userID = userProfile.user_id
-                vc.userEmail = userProfile.email
-                vc.userPassword = userProfile.password
-                vc.userName = userProfile.name
-                vc.userBirthday = userProfile.birthday
-                vc.userGender = userProfile.gender
-                vc.acceptCheckingNotification = userProfile.isAccepted_checking_notification
-                vc.acceptLotteryNotification = userProfile.isAccepted_lottery_notification
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    //self.presentViewController(vc, animated: true, completion: nil)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                })
+                if (responseData.count != 0){
+                    let userProfile: mUser = responseData[0]
+                    
+                    vc.userID = userProfile.user_id
+                    vc.userEmail = userProfile.email
+                    vc.userPassword = userProfile.password
+                    vc.userName = userProfile.name
+                    vc.userBirthday = userProfile.birthday
+                    vc.userGender = userProfile.gender
+                    vc.acceptCheckingNotification = userProfile.isAccepted_checking_notification
+                    vc.acceptLotteryNotification = userProfile.isAccepted_lottery_notification
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        //self.presentViewController(vc, animated: true, completion: nil)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    })
+                }
                 
             })
+            
+//            Ws_User.GetUserProfile(user_id, completion: { (responseData, errorMessage) in
+//                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("lotteryUserView") as! LotteryUserViewController
+//                let userProfile: mUser = responseData
+//                
+//                vc.userID = userProfile.user_id
+//                vc.userEmail = userProfile.email
+//                vc.userPassword = userProfile.password
+//                vc.userName = userProfile.name
+//                vc.userBirthday = userProfile.birthday
+//                vc.userGender = userProfile.gender
+//                vc.acceptCheckingNotification = userProfile.isAccepted_checking_notification
+//                vc.acceptLotteryNotification = userProfile.isAccepted_lottery_notification
+//                
+//                dispatch_async(dispatch_get_main_queue(), {
+//                    //self.presentViewController(vc, animated: true, completion: nil)
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                })
+//                
+//            })
         }
     }
     
@@ -85,6 +111,9 @@ class LoginViewController: UIViewController {
                 let globalProperty: mGlobalproperty = responseData
                 
                 if(globalProperty.resultResponse.result == true){
+                    
+                    CoreData_UserProfile.SaveUserProfile(globalProperty.userProfile)
+                    
                     vc.userID = globalProperty.userProfile.user_id
                     vc.userEmail = globalProperty.userProfile.email
                     vc.userPassword = globalProperty.userProfile.password

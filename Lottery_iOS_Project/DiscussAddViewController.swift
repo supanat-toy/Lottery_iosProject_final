@@ -32,6 +32,15 @@ class DiscussAddViewController: UIViewController {
     }
     
     @IBAction func btn_addNew_discuss(sender: AnyObject) {
+        
+        if(!InternetProvider.isInternetAvailable()){
+            self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
+            self.alertMessage.message = "โปรดเชื่อมต่ออินเตอรเน็ต"
+            self.alertMessage.addButtonWithTitle("OK")
+            self.alertMessage.show()
+        }
+        else{
+        
         var numbers: String = numberTextField.text!
         var message: String = messageTextField.text!
         
@@ -42,6 +51,7 @@ class DiscussAddViewController: UIViewController {
                 //self.dismissViewControllerAnimated(true, completion: nil)
                 
             })
+        }
         }
     }
 

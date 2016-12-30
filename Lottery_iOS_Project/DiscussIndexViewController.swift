@@ -88,25 +88,31 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func refresh_wsGetDiscuss(){
-        self.refreshControl.endRefreshing()
-        self.refreshControl.beginRefreshing()
-        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "กำลังโหลดข้อมูลใหม่")
-        Ws_Discuss.GetDiscussList(current_datePicker, user_id: getUserID()) { (responseData, errorMessage) in
-            dispatch_async(dispatch_get_main_queue(), {
-                self.wsDiscussPeriod = responseData
-                self.wsDiscussList = responseData.discussList
-                self.navigateBar_bottom.topItem?.title = self.wsDiscussPeriod.discuss_period_date_thaiName
-                self.tableView_.reloadData()
-                self.refreshControl.endRefreshing()
-                self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "ข้อมูลล่าสุด")
-                if (self.isChangePickerDate){
-                    var scrollHeight = self.tableView_.contentSize.height
-                    self.tableView_.contentSize = CGSize(
-                        width: self.WIDTH,
-                        height: scrollHeight+207)
-                }
-            })
+        if (InternetProvider.isInternetAvailable()){
+            self.refreshControl.endRefreshing()
+            self.refreshControl.beginRefreshing()
+            self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "กำลังโหลดข้อมูลใหม่")
+            Ws_Discuss.GetDiscussList(current_datePicker, user_id: getUserID()) { (responseData, errorMessage) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.wsDiscussPeriod = responseData
+                    self.wsDiscussList = responseData.discussList
+                    self.navigateBar_bottom.topItem?.title = self.wsDiscussPeriod.discuss_period_date_thaiName
+                    self.tableView_.reloadData()
+                    self.refreshControl.endRefreshing()
+                    self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "ข้อมูลล่าสุด")
+                    if (self.isChangePickerDate){
+                        var scrollHeight = self.tableView_.contentSize.height
+                        self.tableView_.contentSize = CGSize(
+                            width: self.WIDTH,
+                            height: scrollHeight+207)
+                    }
+                })
+            }
         }
+        else {
+            self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("พูดคุย", subtitle: "ไม่ได้เชื่อมต่ออินเตอร์เน็ต")
+        }
+        
     }
     
     @IBAction func btn_datePicker_discuss_date(sender: AnyObject) {
@@ -153,6 +159,8 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func btn_go_AddNewDiscuss_controller(sender: AnyObject) {
+        
+        
         
         if (getUserID() == 0){
             self.alertMessage.title = "คุณไม่สามารถเข้าถึงได้"
@@ -206,6 +214,10 @@ class DiscussIndexViewController: UIViewController, UITableViewDelegate, UITable
         if (wsDiscuss.isLike == true){
             cell.DiscussLike_Button.setImage(UIImage(named: "icon_like")!, forState: .Normal)
             cell.DiscussLike_Button.setTitleColor(UIColor(red: 238/255, green: 166/255, blue: 52/255, alpha: 1.0), forState: .Normal)
+        }
+        else {
+            cell.DiscussLike_Button.setImage(UIImage(named: "icon_unlike")!, forState: .Normal)
+            cell.DiscussLike_Button.setTitleColor(UIColor(red: 120/255, green: 127/255, blue: 143/255, alpha: 1.0), forState: .Normal)
         }
         
         return cell

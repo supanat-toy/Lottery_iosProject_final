@@ -39,7 +39,7 @@ class LotteryDetailsViewController: UIViewController, UIPickerViewDataSource, UI
         uiPickerView_dateLottery.dataSource = self;
         uiPickerView_dateLottery.delegate = self;
         scrollView_Lottery1.addSubview(refreshControl)
-        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ล็อตเตอรี่", subtitle: subTitle_navigationBar)
+        self.navigationItem.titleView = DrawNavigationTitleProvider.setTitle("ลอตเตอรี่", subtitle: subTitle_navigationBar)
         drawViewLottery()
         datePicker_lotteryDate.hidden = true
         self.navigateBar_bottom.topItem?.title = wsLotteryPeriod.lottery_period_date_thaiName
